@@ -3,11 +3,10 @@ from datetime import datetime, timedelta
 # Create your models here.
 
 
-class Morbidity (models.Model) :
+class Morbidity (models.Model):
     type_name = models.CharField(max_length=30)
     food_suggestions = models.CharField(max_length=200)
     
-
     def __str__ (self) :
         return (self.type_name)
 
