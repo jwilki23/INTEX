@@ -6,7 +6,7 @@ from .views import signupPageView
 
 
 urlpatterns = [
-    path("", indexPageView, name="trackme"),
+    path("", indexPageView, name="index"),
     path("mydata/", myDataPageView, name="mydata"),
     path("login/", loginPageView, name='login'),
     path("signup/", signupPageView, name='signup'),
