@@ -1,15 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% load crispy_forms_tags %}
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
 <form action="action_page.php" method="post" class="signupform">
+    {% csrf_token %}
+    {{form|crispy}}
+    
 
   <div class="container">
     <!-- <label for="first_name"><b>First Name</b></label> -->
     <input type="text" placeholder="Enter First Name" name="first_name" required>
 
     <!-- <label for="last_name"><b>Last Name</b></label> -->
-    <input type="text" placeholder="Enter Last Name" name="last_name" required>
+    <input type="text" placeholder="Enter Last Name" name="last_name" required> 
+    
+    <label for="standard-select">Gender</label>
+    <div class="select">
+      <select id="standard-select" name="gender">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+        <option value="O">Other</option>
+      </select>
+      <span class="focus"></span>
+    </div>
+
 
     <button type="button">Create New Profile</button>
     <div class="center" style="border: none;">
