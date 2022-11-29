@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
@@ -29,24 +33,16 @@
           <!-- Start Input Name -->
           <div class="form-group">
             <label for="inputName">Name of Food</label>
-            <input type="text" class="form-control" id="inputName" name="name" placeholder="Your name" required />
+            <input type="text" class="form-control" id="inputName" name="name" placeholder="Chicken, Corn, Rice..." required />
             <small class="form-text text-muted">Please fill in food name</small>
           </div>
           <!-- End Input Name -->
   
-          <!-- Start Input Email -->
-          <div class="form-group">
-            <label for="inputEmail">Email so we can spam you lol</label>
-            <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
-            <small class="form-text text-muted">We'll never share your email with anyone else... giggity</small>
-          </div>
-          <!-- End Input Email (aka servings now lol)-->
-  
           <!-- Start Input Number of Servings -->
           <div class="form-group">
             <label for="inputPhone">Number of Servings</label>
-            <input type="tel" class="form-control" id="inputPhone" name="phone" placeholder="1,2,3,4"  required />
-            <small class="form-text text-muted">How fat are you, be honest</small>
+            <input type="tel" class="form-control" id="inputPhone" name="phone" placeholder="1,2,3..."  required />
+            <small class="form-text text-muted">Enter the number of servings</small>
           </div>
           <!-- End Input Telephone (aka servings now lol)-->
   
@@ -132,3 +128,5 @@
     <!-- End Scritp for Form -->
   
   </body>   
+
+  {% endblock %}
