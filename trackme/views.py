@@ -17,3 +17,5 @@ def loginPageView(request) :
 
 def signupPageView(request) : 
     return render(request, 'trackme/signup.html')
+def journalPageView(request) :
+    return render(request, 'trackme/journal.html')
