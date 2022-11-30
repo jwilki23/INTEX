@@ -185,6 +185,24 @@ dl {
   margin-bottom: 1rem;
 }
 
+.yourdiv
+{
+    display: inline;
+    inline-size: 10px;
+}
+
+.parent {
+  margin: 1cm;
+  padding: 3cm 3cm;
+  text-align: center;
+  
+}
+.child {
+  display: inline-block;
+  padding: 1rem 1rem;
+  vertical-align: middle;
+}
+
 ol ol,
 ul ul,
 ol ul,
