@@ -15,17 +15,18 @@
   <style>
     body,
     html {
-      margin: 0;
+      margin: 2em;
+      margin-bottom: auto;
       padding: 0;
       height: 100%;
-      background: #7abecc !important;
+      background: #f3f3f3 !important;
     }
 
     .user_card {
       width: 350px;
       margin-top: auto;
-      margin-bottom: auto;
-      background: #74cfbf;
+      margin-bottom: 50px;
+      background: #363e485d;
       position: relative;
       display: flex;
       justify-content: center;
@@ -39,7 +40,8 @@
     }
 
     .form_container {
-      margin-top: 20px;
+      margin-top: 0;
+
     }
 
     #form-title {
@@ -48,7 +50,7 @@
 
     .login_btn {
       width: 100%;
-      background: #33ccff !important;
+      background: #263ec8 !important;
       color: white !important;
     }
 
@@ -62,16 +64,22 @@
     }
 
     .input-group-text {
-      background: #f7ba5b !important;
+      background: #ff6a00 !important;
       color: white !important;
       border: 0 !important;
-      border-radius: 0.25rem 0 0 0.25rem !important;
+      border-radius: 0.20rem 0 0 0.20rem !important;
     }
 
     .input_user,
-    .input_pass:focus {
+    .input_pass:focus,
+    select {
       box-shadow: none !important;
       outline: 0px !important;
+    }
+
+    select {
+      border: 0 !important;
+      width: 82%;
     }
   </style>
 
@@ -82,12 +90,24 @@
     <div class="d-flex justify-content-center h-100">
       <div class="user_card">
         <div class="d-flex justify-content-center">
-          <h3 id="form-title">REGISTER ACCOUNT</h3>
+          <h3 id="form-title">REGISTER PROFILE</h3>
         </div>
         <div class="d-flex justify-content-center form_container">
 
-          <form method="POST" action="{% url 'mydata' %}">
+          <form method="POST" action="{% url 'signup' %}">
             {% csrf_token %}
+            <div class="input-group mb-3">
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input type="text" name="first_name" id="first_name" placeholder="First name...">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input type="text" name="last_name" id="last_name" placeholder="Last name...">
+            </div>
             <div class="input-group mb-3">
               <div class="input-group-append">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -114,30 +134,60 @@
             </div>
             <div class="input-group mb-3">
               <div class="input-group-append">
-                <span class="input-group-text"><i class="fas fa-weight-scale"></i></span>
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
               </div>
-              <input type="text" name="weight" id="weight" placeholder="Weight...">
+              <input type="number" name="age" id="age" placeholder="Age...">
             </div>
             <div class="input-group mb-3">
               <div class="input-group-append">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <span class="input-group-text"><i class="fas fa-user-group"></i></span>
               </div>
-              <input type="text" name="age" id="age" placeholder="Age...">
+              <!-- <input type="text" name="gender" id="gender" placeholder="Gender..."> -->
+              <select name="gender" id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-weight-scale"></i></span>
+              </div>
+              <input type="number" name="weight" id="weight" placeholder="Weight(lbs)...">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-ruler"></i></span>
+              </div>
+              <input type="number" name="height_feet" id="height_feet" placeholder="Height(feet)...">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-ruler"></i></span>
+              </div>
+              <input type="number" name="height_inches" id="height_inches" placeholder="Height(inches)...">
             </div>
             <!-- crud test -->
             <div class="input-group mb-3">
               <div class="input-group-append">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <span class="input-group-text"><i class="fas fa-kit-medical"></i></span>
               </div>
-              <input type="text" name="age" id="age" placeholder="Age...">
+              <select name="stage" id="stage">
+                <!-- <option value="normal">Normal</option>
+                <option value="stage3">Stage 3</option>
+                <option value="stage4">Stage 4</option> -->
+                {% for stage in stage %}
+                <option value="{{ stage.id }}">{{ stage.stage_name }}</option>
+                {% endfor %}
+              </select>
             </div>
 
+
             <div class="d-flex justify-content-center mt-3 login_container">
-              <input class="btn login_btn" type="submit" value="Register Account">
+              <input class="btn login_btn" type="submit" value="Register Profile">
             </div>
           </form>
         </div>
-
+        {{form.errors}}
         <div class="mt-4">
           <div class="d-flex justify-content-center links">
             Already have an account? <a href="{% url 'login' %}" class="ml-2">Login</a>
@@ -153,9 +203,9 @@
 
     //Query All input fields
     var form_fields = document.getElementsByTagName('input')
-    form_fields[1].placeholder = 'Username..';
-    form_fields[2].placeholder = 'Enter password...';
-    form_fields[3].placeholder = 'Re-enter Password...';
+    form_fields[3].placeholder = 'Username...';
+    form_fields[4].placeholder = 'Enter password...';
+    form_fields[5].placeholder = 'Re-enter Password...';
 
 
     for (var field in form_fields) {
