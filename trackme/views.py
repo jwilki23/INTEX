@@ -12,7 +12,7 @@ from django.shortcuts import redirect
 class SignupView(CreateView) :
     form_class = SignUpForm
     template_name = 'trackme/register.html'
-    success_url = '/mydata'
+    success_url = '/login2'
 
     def get(self, request, *args, **kwargs) :
         if self.request.user.is_authenticated :
