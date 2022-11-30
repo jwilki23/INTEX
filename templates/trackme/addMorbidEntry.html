@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class='container'>
+    <div class='text-left'>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 class='section-heading text-uppercase'>Add Morbidity</h2>
+        <br>
+    </div>
+    <h5 class='section-heading text-uppercase'>Current Morbidities:</h5>
+    {% for hadMorbidity in morbidities %}
+    <p> {{hadMorbidity.type_name}} </p>
+    {% endfor %}
+    <br><br>
+
+    <form name='form' method='post' action="{% url 'addNewMorbidity' %}">
+        {% csrf_token %}
+
+        <label for='new_morb'>Select the Morbidity to Add:</label>
+        <select name='new_morb' id='new_morb'>
+            {% for morb in avail %}
+            <option value="{{ morb.id }}"> {{morb.type_name}}</option>
+            {% endfor %}
+            <br><br>
+        </select>
+        <button type='submit'>Add Morbidity</button>
+    </form> 
+</div>
+
+<br>
+<br>
+<br>
+<br>
+  {% endblock %}

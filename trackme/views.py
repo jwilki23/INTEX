@@ -37,10 +37,22 @@ def indexPageView(request) :
     return render(request, 'trackme/index.html')
 
 def myDataPageView(request) :
-    data = JournalEntry.objects.all()
+    #retrieve current person based on logged in username
+    current_user = request.user.username
+    current_person = Person.objects.get(user_name = current_user)
+
+  #  data = entries(person_id__in=current_person)
+    #data = JournalEntry.objects.get(person_id = current_person)
+    non_users = Person.objects.exclude(id=current_person.id)
+    unordered_data = JournalEntry.objects.exclude(person_id__in=non_users)
+    data = unordered_data.order_by('date')
+
+    morbidities = current_person.morbidity_type.all()
 
     context = {
-        'journalentry' : data
+        'current_person' : current_person,
+        'journalentry' : data,
+        'morbidities' : morbidities
     }
     return render(request, 'trackme/mydata.html', context)
 
@@ -69,8 +81,8 @@ def signupPageView(request) :
             person = Person()
             form_user = form.cleaned_data.get('username')
 
-            person.first_name = request.POST['first_name']
-            person.last_name = request.POST['last_name']
+            person.first_name = request.POST['first_name'].title()
+            person.last_name = request.POST['last_name'].title()
             person.age = request.POST['age']
             person.gender = request.POST['gender']
             person.weight = request.POST['weight']
@@ -139,6 +151,7 @@ def updateJournalEntryPageView (request) :
 def addJournalEntryPageView (request) :
     if request.method == 'POST' :
         
+        current_user_name = request.user.username
         journalentry = JournalEntry()
 
         # journalentry_id = request.POST['journalentry_id']
@@ -149,6 +162,7 @@ def addJournalEntryPageView (request) :
         journalentry.meal = request.POST['meal']
         journalentry.food_name = request.POST['food_name']
         journalentry.servings = request.POST['servings']
+        journalentry.person = Person.objects.get(user_name = current_user_name)
 
         journalentry.save()
         return myDataPageView(request)
@@ -164,4 +178,29 @@ def deleteEntryPageView(request,journalentry_id) :
     data.delete()
 
     return myDataPageView(request)
+
+def addMorbidEntryPageView (request) :
+    current_person = Person.objects.get(user_name = request.user.username)
+    morbidities = current_person.morbidity_type.all()
+
+    avail_morb = Morbidity.objects.exclude(id__in=morbidities)
+
+    context = {
+        'avail' : avail_morb,
+        'morbidities' : morbidities
+    }
+
+    return render(request, 'trackme/addMorbidEntry.html', context)
+
+def addNewMorbidityPageView(request) :
+    if request.method == 'POST' :
+        current_person = Person.objects.get(user_name = request.user.username)
+
+        morb = request.POST['new_morb']
+        current_person.morbidity_type.add(Morbidity.objects.get(id=morb))
+
+    return myDataPageView(request)
+
+
+
 

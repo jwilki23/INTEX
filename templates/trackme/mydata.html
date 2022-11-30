@@ -5,11 +5,22 @@
   <!-- Masthead-->
   <header class="masthead text-white text-center ">
       <div class="container">
-          <h2 class="">Welcome {{ user.username }}, to your unique profile!</h2>
+          <h2 class="">Welcome {{ current_person.first_name }} to your unique profile!</h2>
           <h4 class="">Scroll down for more details</h4>
 
       </div>
   </header>
+
+  <section class='text-center container-sm'>
+    <br>
+    <h1><b>Your Morbitities:</b></h1>
+    <a class='btn btn-primary' href="{% url 'addMorbidEntry' %}">Add Morbidity</a>
+    {% for morbidity in morbidities %}
+              <p>{{morbidity.type_name}}</p>
+              {% empty  %}
+                <p>No Morbitities!</p>
+          {% endfor %} 
+  </section>
 
   <section class='text-center container-sm'>
   <br>
