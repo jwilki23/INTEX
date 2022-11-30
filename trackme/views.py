@@ -1,17 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.forms import inlineformset_factory
+from .forms import CreateUserForm
+from .models import Person, Stage, Morbidity
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
-from django.forms import inlineformset_factory
-from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm
-from .models import Person, Stage, Morbidity
-from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
-
 from django.shortcuts import redirect
 # Create your views here.
 
@@ -92,6 +90,8 @@ def signupPageView(request) :
             'morbidity': morbidity
         }
         return render(request, 'trackme/signup.html', context)
+
+        
 def journalPageView(request) :
     return render(request, 'trackme/journal.html')
 
