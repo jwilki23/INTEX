@@ -77,7 +77,6 @@ def signupPageView(request) :
             person.height_feet = request.POST['height_feet']
             person.height_inches = request.POST['height_inches']
             person.user_name = request.POST.get('username')
-            person.password = 'test'
             # user.stage = request.POST['stage']
 
             stage_id = request.POST['stage']
