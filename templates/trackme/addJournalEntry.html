@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
-<head>
+{% comment %} <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -127,6 +126,53 @@
     </script>
     <!-- End Scritp for Form -->
   
-  </body>   
+  </body>    {% endcomment %}
 
+  <div class='container'>
+    <div class='text-left'>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 class='section-heading text-uppercase'>Add a Joural Entry</h2>
+        <br>
+    </div>
+    <br>
+    <form name='form' method='post' action="{% url 'addJournalEntry' %}">
+       {% csrf_token %}
+       <input type="hidden" id='journalentry_id' name='journalentry_id' value='{{record.id}}'>
+
+       <label for="date">Date:</label>
+       <input type="date" name='date' id='date' value='{{record.date}}' autofocus>
+       <br><br>
+
+       <label for="meal">Meal:</label>
+       <select name="meal" id="meal" value='{{record.meal}}'>
+        <option value="Breakfast">Breakfast</option>
+        <option value="Lunch">Lunch</option>
+        <option value="Dinner">Dinner</option>
+        <option value="Snack">Snack</option>
+       </select>
+       <br><br>
+
+       <label for="food_name">Food:</label>
+       <input type="text" name='food_name' id='food_name' value='{{record.food_name}}' >
+       <br><br>
+
+       <label for="servings">Servings:</label>
+       <input type="number" name='servings' id='servings' value='{{record.servings}}' >
+       <br><br>
+
+       <button type='submit'>Update</button>
+       <br>
+       <br>
+    </form>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
   {% endblock %}

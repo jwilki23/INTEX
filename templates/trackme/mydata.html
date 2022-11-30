@@ -2,41 +2,43 @@
 {% load static %}
 {% block content %}
 
-        <!-- Masthead-->
-        <header class="masthead text-white text-center ">
-            <div class="container">
-                <h2 class="">Welcome {{ user.username }}, to your unique profile!</h2>
-                <h4 class="">Scroll down for more details</h4>
+  <!-- Masthead-->
+  <header class="masthead text-white text-center ">
+      <div class="container">
+          <h2 class="">Welcome {{ user.username }}, to your unique profile!</h2>
+          <h4 class="">Scroll down for more details</h4>
 
-            </div>
-        </header>
+      </div>
+  </header>
 
-        <section class='text-center container-sm'>
-        <h1><b>JOURNAL ENTRIES</b></h1>
-            
-            
-             <table class="table">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Meal</th>
-                    <th scope="col">Food</th>
-                    <th scope="col">Servings</th>
-                  </tr>
-                </thead> 
-                <tbody>
-                {% for journalentry in journalentry %}
-                  <tr>
-                    <td>{{journalentry.date}}</td>
-                    <td>{{journalentry.meal}}</td>
-                    <td>{{journalentry.food_name}}</td>
-                    <td>{{journalentry.servings}}</td>
-                    <td><a class="btn btn-primary" href="{% url 'showSingleEntry' journalentry_id=journalentry.id %}">Edit</a></td>
-                    <td><a class="btn btn-primary" href="{% url 'deleteEntry' journalentry_id=journalentry.id %}">Delete</a></td>
-                  </tr>
-                {% endfor %} 
-                </tbody>
-              </table> 
-              
+  <section class='text-center container-sm'>
+  <br>
+  <h1><b>JOURNAL ENTRIES</b></h1>
+      
+  <a class='btn btn-primary' href="{% url 'addJournalEntry' %}">Add Entry</a>
+
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Meal</th>
+              <th scope="col">Food</th>
+              <th scope="col">Servings</th>
+            </tr>
+          </thead> 
+          <tbody>
+          {% for journalentry in journalentry %}
+            <tr>
+              <td>{{journalentry.date}}</td>
+              <td>{{journalentry.meal}}</td>
+              <td>{{journalentry.food_name}}</td>
+              <td>{{journalentry.servings}}</td>
+              <td><a class="btn btn-primary" href="{% url 'showSingleEntry' journalentry_id=journalentry.id %}">Edit</a></td>
+              <td><a class="btn btn-primary" href="{% url 'deleteEntry' journalentry_id=journalentry.id %}">Delete</a></td>
+            </tr>
+          {% endfor %} 
+          </tbody>
+        </table> 
+  <section/>
       
 {% endblock %}

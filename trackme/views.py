@@ -45,8 +45,8 @@ def loginPageView(request) :
 def signupPageView(request) : 
     return render(request, 'trackme/signup.html')
 
-def journalPageView(request) :
-    return render(request, 'trackme/journal.html')
+# def addJournalEntryPageView(request) :
+#     return render(request, 'trackme/addJournalEntry.html')
 
 def showSingleEntryPageView(request, journalentry_id) :
     data = JournalEntry.objects.get(id = journalentry_id)
@@ -55,6 +55,14 @@ def showSingleEntryPageView(request, journalentry_id) :
         "record" : data,
     }
     return render(request, 'trackme/updatejournalentry.html' , context)
+
+# def showMainEntryPageView(request, journalentry_id) :
+#     data = JournalEntry.objects.get(id = journalentry_id)
+
+#     context = {
+#         "record" : data,
+#     }
+#     return render(request, 'trackme/addJournalEntry.html' , context)
 
 def updateJournalEntryPageView (request) :
     if request.method == 'POST' :
@@ -70,6 +78,29 @@ def updateJournalEntryPageView (request) :
 
         journalentry.save()
     return myDataPageView(request)
+
+
+def addJournalEntryPageView (request) :
+    if request.method == 'POST' :
+        
+        journalentry = JournalEntry()
+
+        # journalentry_id = request.POST['journalentry_id']
+
+        # journalentry = JournalEntry.objects.get(id=journalentry_id)
+    
+        journalentry.date = request.POST['date']
+        journalentry.meal = request.POST['meal']
+        journalentry.food_name = request.POST['food_name']
+        journalentry.servings = request.POST['servings']
+
+        journalentry.save()
+        return myDataPageView(request)
+
+    else:
+        return render(request, 'trackme/addJournalEntry.html')
+
+
 
 def deleteEntryPageView(request,journalentry_id) :
     data = JournalEntry.objects.get(id = journalentry_id)
