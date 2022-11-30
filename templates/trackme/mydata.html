@@ -12,7 +12,10 @@
         </header>
 
         <section class='text-center container-sm'>
-            <table class="table">
+        <h1><b>JOURNAL ENTRIES</b></h1>
+            
+            
+             <table class="table">
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">Date</th>
@@ -20,28 +23,20 @@
                     <th scope="col">Food</th>
                     <th scope="col">Servings</th>
                   </tr>
-                </thead>
+                </thead> 
                 <tbody>
+                {% for journalentry in journalentry %}
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <td>{{journalentry.date}}</td>
+                    <td>{{journalentry.meal}}</td>
+                    <td>{{journalentry.food_name}}</td>
+                    <td>{{journalentry.servings}}</td>
+                    <td><a class="btn btn-primary" href="{% url 'showSingleEntry' journalentry_id=journalentry.id %}">Edit</a></td>
+                    <td><a class="btn btn-primary" href="{% url 'deleteEntry' journalentry_id=journalentry.id %}">Delete</a></td>
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
+                {% endfor %} 
                 </tbody>
-              </table>
+              </table> 
               
       
 {% endblock %}

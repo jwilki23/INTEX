@@ -86,11 +86,11 @@ class JournalEntry(models.Model) :
 
     #Micro Sub-Values per Journal Entry (Daily totals calculated by date)
 
-    DV_sodium = models.DecimalField(max_digits=8, decimal_places=2)
-    DV_protein = models.DecimalField(max_digits=8, decimal_places=2)
-    DV_water = models.DecimalField(max_digits=8, decimal_places=2)
-    DV_k = models.DecimalField(max_digits=8, decimal_places=2)
-    DV_phos = models.DecimalField(max_digits=8, decimal_places=2)
+    # DV_sodium = models.DecimalField(max_digits=8, decimal_places=2)
+    # DV_protein = models.DecimalField(max_digits=8, decimal_places=2)
+    # DV_water = models.DecimalField(max_digits=8, decimal_places=2)
+    # DV_k = models.DecimalField(max_digits=8, decimal_places=2)
+    # DV_phos = models.DecimalField(max_digits=8, decimal_places=2)
 
 
     def __str__ (self) :
