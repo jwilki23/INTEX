@@ -26,11 +26,12 @@
                     <ul class="navbar-nav ms-auto">
                         {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
-                        {% else %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'login2' %}">Log in</a></li>
-                        {% endif %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'signup2' %}">Sign Up</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'mydata' %}">My Data</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log in</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign Up</a></li>
+                        {% endif %}
+                        
 
                         {% comment %} <li class="nav-item"><a class="nav-link" href="#!">Log In</a></li> {% endcomment %}
                     </ul>
@@ -42,6 +43,7 @@
         {% block content %}
         {% endblock %}
         <!-- Footer-->
+        <br><br><br><br><br><br><br>
         <footer class="py-5 bg-black">
             <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Your Website 2022</p></div>
         </footer>
