@@ -55,8 +55,7 @@ class Person(models.Model) :
     weight = models.DecimalField(max_digits=8, decimal_places=2)
     height_feet = models.IntegerField(default=0)
     height_inches = models.IntegerField(default=0)
-    # password = models.CharField(max_length=20)
-    # user_name = models.CharField(max_length=20)
+    user_name = models.CharField(max_length=20, default='name')
     stage = models.ForeignKey(Stage, on_delete=models.CASCADE)
 
     def __str__ (self) :
