@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
+from trackme.models import JournalEntry
 
 from django.shortcuts import redirect
 # Create your views here.
@@ -31,12 +32,48 @@ def indexPageView(request) :
     return render(request, 'trackme/index.html')
 
 def myDataPageView(request) :
-    return render(request, 'trackme/mydata.html')
+    data = JournalEntry.objects.all()
+
+    context = {
+        'journalentry' : data
+    }
+    return render(request, 'trackme/mydata.html', context)
 
 def loginPageView(request) : 
     return render(request, 'trackme/login.html')
 
 def signupPageView(request) : 
     return render(request, 'trackme/signup.html')
+
 def journalPageView(request) :
     return render(request, 'trackme/journal.html')
+
+def showSingleEntryPageView(request, journalentry_id) :
+    data = JournalEntry.objects.get(id = journalentry_id)
+
+    context = {
+        "record" : data,
+    }
+    return render(request, 'trackme/updatejournalentry.html' , context)
+
+def updateJournalEntryPageView (request) :
+    if request.method == 'POST' :
+        journalentry_id = request.POST['journalentry_id']
+
+        journalentry = JournalEntry.objects.get(id=journalentry_id)
+    
+        journalentry.date = request.POST['date']
+        journalentry.meal = request.POST['meal']
+        journalentry.food_name = request.POST['food_name']
+        journalentry.servings = request.POST['servings']
+        # journalentry.person = request.POST['person']
+
+        journalentry.save()
+    return myDataPageView(request)
+
+def deleteEntryPageView(request,journalentry_id) :
+    data = JournalEntry.objects.get(id = journalentry_id)
+
+    data.delete()
+
+    return myDataPageView(request)
