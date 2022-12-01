@@ -11,7 +11,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
 from trackme.models import JournalEntry
-from .api import searchItemName, getNutrients
+from .api import searchItemName2, getNutrients, searchItem
 
 from django.shortcuts import redirect
 # Create your views here.
@@ -203,26 +203,33 @@ def addNewMorbidityPageView(request) :
     return myDataPageView(request)
 
 def apiPageView(request) : 
-    if request.method == 'POST' : 
+    # search_item = request.GET.get('food')
+    # data = searchItemName2(search_item)
+    # nutrition = request.POST.get('food_item')
+    # context2 = {
+    #      "data" : data,
+    #      "nutrition" : nutrition
+    # }
+    # return render(request, 'trackme/api.html', context2)
+    if request.method == 'POST':
+        search_item = request.POST.get('food')
+        data = searchItemName2(search_item)
+        nutrition = request.POST.get('food_item')
+        context2 = {
+            "data" : data,
+            "nutrition" : nutrition
+        }
+        return render(request, 'trackme/api.html', context2)
+
+    else: 
         search_item = request.GET.get('food')
-        data = searchItemName(search_item)
-        food_id = request.POST['food_id']
-        nutrient_data = getNutrients(search_item, food_id)
+        data = searchItemName2(search_item)
 
         context = {
-            "nutrient_data" : nutrient_data,
             "data" : data
         }
     
         return render(request, 'trackme/api.html', context)
-    else: 
-        search_item = request.GET.get('food')
-        data = searchItemName(search_item)
-        context = {
-            "data" : data
-        }
-        return render(request, 'trackme/api.html', context)
-
 
 
 
