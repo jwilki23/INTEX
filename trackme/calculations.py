@@ -41,7 +41,7 @@ def calcStage(stage, person) :
     phosll = stage.healthy_dv_phos_ll
 
     stageValues = {
-        'sodiumul' : sodiumul, 
+        'sodiumul' : sodiumul,
         'sodiumll' : sodiumll,
         'proteinul' :  proteinul, 
         'proteinll' :  proteinll, 
