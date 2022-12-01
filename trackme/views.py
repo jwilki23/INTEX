@@ -25,6 +25,7 @@ class SignupView(CreateView) :
         if self.request.user.is_authenticated :
             return redirect('/mydata')
         return super().get(request, *args, **kwargs)
+    
 
 class LogoutInterfaceView(LogoutView) :
     template_name = 'trackme/logout.html'
@@ -53,14 +54,13 @@ def myDataPageView(request) :
     micro_totals = calcTotals(unordered_data)
     stage_micros = calcStage(stage, current_person)
     alerts = alert(micro_totals, stage_micros)
-
     context = {
         'alerts' : alerts,
         'stageMicros' : stage_micros,
         'micros' : micro_totals,
         'current_person' : current_person,
         'journalentry' : ordered_entries,
-        'morbidities' : morbidities
+        'morbidities' : morbidities,
     }
     return render(request, 'trackme/mydata.html', context)
 

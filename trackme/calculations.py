@@ -56,11 +56,11 @@ def calcStage(stage, person) :
 
 def checkRange(value, ll, ul) :
     if value < ll :
-        return ("on the low side")
+        return ("Daily intake is lower than recommended")
     elif value > ul :
-        return ('on the high side')
+        return ('Daily intake is higher than recommended')
     else :
-        return ('within the appropriate range!')
+        return ('Daily intake is in the recommended range!')
 def alert(micros, stages) :
     alerts = {
        'sodium' : checkRange(micros['sodium'], stages['sodiumll'], stages['sodiumul']),
