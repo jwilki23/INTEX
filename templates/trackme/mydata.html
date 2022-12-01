@@ -70,7 +70,7 @@
             </tr>
         </tbody>
     </table>
-    <h2 style="color:#FF0000";><b>Intake Alerts:</b></h2>
+    <h2 ><b>Intake Alerts:</b></h2>
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -83,14 +83,24 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{alerts.sodium}}</td>
-                <td>{{alerts.protein}}</td>
-                <td>{{alerts.water}}</td>
-                <td>{{alerts.k}}</td>
-                <td>{{alerts.phos}}</td>
+              {% for key, value in alerts.items %} 
+              {% if value == 'Daily intake is lower than recommended' or value == 'Daily intake is higher than recommended' %} 
+                <td style="color:#FF0000">{{value}}</td>
+                {%else%}
+                <td style="color:green";>{{value}}</td>
+                {% endif %} 
+              {% endfor %} 
             </tr>
         </tbody>
     </table>
+    {% comment %} {% with 'alerts.sodium alerts.protein alerts.water alerts.k {{alerts.phos}}' as list %}
+  {% for i in list.split %}
+  {% comment %} {% if alerts.i == 'Daily intake is lower than recommended'%} {% endcomment %}
+    {% comment %} {% else %} {% endcomment %}
+    {% comment %} {{ alerts.i }}<br> {% endcomment %}
+    {% comment %} {% endif %} {% endcomment %}
+  {% comment %} {% endfor %}
+{% comment %} {% endwith %} {% endcomment %}
 </section>
 
   <!--Journal Entry display and Editing-->
