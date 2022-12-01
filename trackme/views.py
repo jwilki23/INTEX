@@ -11,7 +11,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
 from trackme.models import JournalEntry
-from trackme.calculations import calcTotals, calcStage
+from trackme.calculations import calcTotals, calcStage, alert
 
 from django.shortcuts import redirect
 # Create your views here.
@@ -51,9 +51,11 @@ def myDataPageView(request) :
 
     morbidities = current_person.morbidity_type.all()
     micro_totals = calcTotals(unordered_data)
-    stage_micros = calcStage(stage)
+    stage_micros = calcStage(stage, current_person)
+    alerts = alert(micro_totals, stage_micros)
 
     context = {
+        'alerts' : alerts,
         'stageMicros' : stage_micros,
         'micros' : micro_totals,
         'current_person' : current_person,
