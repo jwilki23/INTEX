@@ -11,6 +11,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
 from trackme.models import JournalEntry
+from trackme.calculations import calcTotals, calcStage
 
 from django.shortcuts import redirect
 # Create your views here.
@@ -40,18 +41,23 @@ def myDataPageView(request) :
     #retrieve current person based on logged in username
     current_user = request.user.username
     current_person = Person.objects.get(user_name = current_user)
-
+    stage_id = current_person.stage_id
+    stage = Stage.objects.get(id=stage_id)
   #  data = entries(person_id__in=current_person)
     #data = JournalEntry.objects.get(person_id = current_person)
     non_users = Person.objects.exclude(id=current_person.id)
     unordered_data = JournalEntry.objects.exclude(person_id__in=non_users)
-    data = unordered_data.order_by('date')
+    ordered_entries = unordered_data.order_by('date')
 
     morbidities = current_person.morbidity_type.all()
+    micro_totals = calcTotals(unordered_data)
+    stage_micros = calcStage(stage)
 
     context = {
+        'stageMicros' : stage_micros,
+        'micros' : micro_totals,
         'current_person' : current_person,
-        'journalentry' : data,
+        'journalentry' : ordered_entries,
         'morbidities' : morbidities
     }
     return render(request, 'trackme/mydata.html', context)

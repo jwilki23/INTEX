@@ -13,6 +13,7 @@
       </div>
   </header>
 
+  <!--Morbitity display and Adding-->
   <section class='text-center container-sm'>
     <br>
     <h1><b>Your Morbitities:</b></h1>
@@ -24,6 +25,18 @@
           {% endfor %} 
   </section>
 
+<!--Daily totals -->
+<section class='text-center container-sm'>
+  <br>
+  <h1><b>Today's Intake Totals:</b></h1>
+              <p>Total Sodium intake: {{micros.sodium}} Healthy Stage-Range: {{stageMicros.sodiumll}} - {{stageMicros.sodiumul}} </p>
+              <p>Total Protein intake: {{micros.protein}} Healthy Stage-Range: {{stageMicros.proteinll}} - {{stageMicros.proteinul}}</p>
+              <p>Total Water intake: {{micros.water}} Healthy Stage-Range: {{stageMicros.water}}</p> 
+              <p>Total k intake: {{micros.k}} Healthy Stage-Range: {{stageMicros.k}}</p>
+              <p>Total Phos intake: {{micros.phos}} Healthy Stage-Range: {{stageMicros.phos}}</p>
+</section>
+
+  <!--Journal Entry display and Editing-->
   <section class='text-center container-sm'>
   <br>
   <h1><b>JOURNAL ENTRIES</b></h1>
