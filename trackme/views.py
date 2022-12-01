@@ -212,14 +212,13 @@ def apiPageView(request) :
     # }
     # return render(request, 'trackme/api.html', context2)
     if request.method == 'POST':
-        search_item = request.POST.get('food')
-        data = searchItemName2(search_item)
-        nutrition = request.POST.get('food_item')
+        # search_item = request.POST.get('food')
+        # data = searchItemName2(search_item)
+        nutrition = request.POST['food_item']
         context2 = {
-            "data" : data,
             "nutrition" : nutrition
         }
-        return render(request, 'trackme/api.html', context2)
+        return displayPageView(request, context2)
 
     else: 
         search_item = request.GET.get('food')
@@ -230,6 +229,10 @@ def apiPageView(request) :
         }
     
         return render(request, 'trackme/api.html', context)
+
+def displayPageView(request, context2) :
+
+    return render (request, 'trackme/display.html', context2)
 
 
 
