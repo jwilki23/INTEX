@@ -51,7 +51,7 @@ def myDataPageView(request) :
 
     morbidities = current_person.morbidity_type.all()
     micro_totals = calcTotals(unordered_data)
-    stage_micros = calcStage(stage)
+    stage_micros = calcStage(stage,current_person)
 
     context = {
         'stageMicros' : stage_micros,
