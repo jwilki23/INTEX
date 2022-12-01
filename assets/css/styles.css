@@ -197,10 +197,28 @@ dl {
   padding: 3cm 3cm;
   text-align: center;
 }
+
+.parent1 {
+  margin: 1cm;
+  padding: 1cm 1cm;
+  text-align: center;
+}
+
+
 .child {
   display: inline-block;
   padding: 1rem 1rem;
   vertical-align: middle;
+  
+}
+
+.child1 {
+  margin: 1cm;
+  padding: 1cm 1cm;
+  text-align: center;
+  padding-left: 15rem;
+  width:100px;
+  height:100px;
 }
 
 ol ol,
