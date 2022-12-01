@@ -110,6 +110,8 @@ def signupPageView(request) :
             person.save()
             messages.success(request, 'Account was created for ' + form_user)
             return redirect('login')
+        else:
+            return redirect ('signup')
     else:
         form = UserCreationForm()
         stage = Stage.objects.all()
