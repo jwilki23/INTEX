@@ -29,11 +29,68 @@
 <section class='text-center container-sm'>
   <br>
   <h1><b>Today's Intake Totals:</b></h1>
-              <p>Total Sodium intake: {{micros.sodium}} Healthy Stage-Range: {{stageMicros.sodiumll}} - {{stageMicros.sodiumul}} </p>
-              <p>Total Protein intake: {{micros.protein}} Healthy Stage-Range: {{stageMicros.proteinll}} - {{stageMicros.proteinul}}</p>
-              <p>Total Water intake: {{micros.water}} Healthy Stage-Range: {{stageMicros.water}}</p> 
-              <p>Total k intake: {{micros.k}} Healthy Stage-Range: {{stageMicros.k}}</p>
-              <p>Total Phos intake: {{micros.phos}} Healthy Stage-Range: {{stageMicros.phos}}</p>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Daily Sodium Intake Total</th>
+                <th scope="col">Daily Protein Intake Total</th>
+                <th scope="col">Daily Water Intake Total</th>
+                <th scope="col">Daily Potassium Intake Total</th>
+                <th scope="col">Daily Phosphorus Intake Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{micros.sodium}}</td>
+                <td>{{micros.protein}}</td>
+                <td>{{micros.water}}</td>
+                <td>{{micros.k}}</td>
+                <td>{{micros.phos}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2><b>Healthy Intake Ranges:</b></h2>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Sodium Intake</th>
+                <th scope="col">Protein Intake</th>
+                <th scope="col">Water Intake</th>
+                <th scope="col">Potassium Intake</th>
+                <th scope="col">Phosphorus Intake</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{stageMicros.sodiumll}} - {{stageMicros.sodiumul}}</td>
+                <td>{{stageMicros.proteinll}} - {{stageMicros.proteinul}}</td>
+                <td>{{stageMicros.waterll}} - {{stageMicros.waterul}}</td>
+                <td>{{stageMicros.kll}} - {{stageMicros.kul}}</td>
+                <td>{{stageMicros.phosll}} - {{stageMicros.phosul}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2><b>Intake Suggestions:</b></h2>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Sodium Intake</th>
+                <th scope="col">Protein Intake</th>
+                <th scope="col">Water Intake</th>
+                <th scope="col">Potassium Intake</th>
+                <th scope="col">Phosphorus Intake</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{alerts.sodium}}</td>
+                <td>{{alerts.protein}}</td>
+                <td>{{alerts.water}}</td>
+                <td>{{alerts.k}}</td>
+                <td>{{alerts.phos}}</td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
   <!--Journal Entry display and Editing-->
