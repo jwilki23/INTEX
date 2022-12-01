@@ -18,6 +18,7 @@
     <br>
     <h1><b>Your Morbitities:</b></h1>
     <a class='btn btn-primary' href="{% url 'addMorbidEntry' %}">Add Morbidity</a>
+    <br><br>
     {% for morbidity in morbidities %}
               <p>{{morbidity.type_name}}</p>
               {% empty  %}
@@ -32,7 +33,7 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Daily Sodium Intake Total</th>
+                <th scope="col">Daily Sodium Intake Total </th>
                 <th scope="col">Daily Protein Intake Total</th>
                 <th scope="col">Daily Water Intake Total</th>
                 <th scope="col">Daily Potassium Intake Total</th>
@@ -41,14 +42,15 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{micros.sodium}}</td>
-                <td>{{micros.protein}}</td>
-                <td>{{micros.water}}</td>
-                <td>{{micros.k}}</td>
-                <td>{{micros.phos}}</td>
+                <td>{{micros.sodium}} mg</td>
+                <td>{{micros.protein}} g/kg</td>
+                <td>{{micros.water}} L/day</td>
+                <td>{{micros.k}} mg</td>
+                <td>{{micros.phos}} mg</td>
             </tr>
         </tbody>
     </table>
+    <br>
     <h2><b>Healthy Intake Ranges:</b></h2>
     <table class="table">
         <thead class="thead-dark">
@@ -62,11 +64,11 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{stageMicros.sodiumll}} - {{stageMicros.sodiumul}}</td>
-                <td>{{stageMicros.proteinll}} - {{stageMicros.proteinul}}</td>
-                <td>{{stageMicros.waterll}} - {{stageMicros.waterul}}</td>
-                <td>{{stageMicros.kll}} - {{stageMicros.kul}}</td>
-                <td>{{stageMicros.phosll}} - {{stageMicros.phosul}}</td>
+                <td>{{stageMicros.sodiumll}} - {{stageMicros.sodiumul}} mg</td>
+                <td>{{stageMicros.proteinll}} - {{stageMicros.proteinul}} g/kg</td>
+                <td>{{stageMicros.waterll}} - {{stageMicros.waterul}} L/day</td>
+                <td>{{stageMicros.kll}} - {{stageMicros.kul}} mg</td>
+                <td>{{stageMicros.phosll}} - {{stageMicros.phosul}} mg</td>
             </tr>
         </tbody>
     </table>
@@ -93,46 +95,14 @@
     </table>
 </section>
 
-  <!--Journal Entry display and Editing-->
-  <section class='text-center container-sm'>
-  <br>
-  <h1><b>JOURNAL ENTRIES</b></h1>
-      
-  <a class='btn btn-primary' href="{% url 'addJournalEntry' %}">Add Entry</a>
+ {% comment %} <br>
+ <br>
+ <br>
+ <br>
 
-          <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Meal</th>
-                <th scope="col">Food</th>
-                <th scope="col">Servings</th>
-              </tr>
-            </thead> 
-            <tbody>
-            {% for journalentry in journalentry %}
-              <tr>
-                <td>{{journalentry.date}}</td>
-                <td>{{journalentry.meal}}</td>
-                <td>{{journalentry.food_name}}</td>
-                <td>{{journalentry.servings}}</td>
-                <td><a class="btn btn-primary" href="{% url 'showSingleEntry' journalentry_id=journalentry.id %}">Edit</a></td>
-                <td><a class="btn btn-primary" href="{% url 'deleteEntry' journalentry_id=journalentry.id %}">Delete</a></td>
-              </tr>
-            {% endfor %} 
-            </tbody>
-          </table> 
-  </section>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-  <section>
-    <h1 class="text-center">Let's take a look at your micronutrient intake... </h1>
- 
-  
+  <h1 class="text-center">Let's take a look closer look at your micronutrient intake... </h1> {% endcomment %}
+
+
     <div class='parent'>
       <div class='child'>  
         <!-- Here is your protein intake graph compared to averages -->
@@ -142,27 +112,22 @@
         const myChart2 = new Chart(ctx2, {
             type: 'bar',
             data: {
-                labels: ['g/kg', 'Normal', 'Stage 3/4', 'Dialysis'],
+                labels: ['g/kg - Your Intake', 'Normal', 'Stage 3/4', 'Dialysis'],
                 datasets: [{
                     label: 'Your Protein Intake (g/kg)',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: [{{micros.protein}}, 0.8, 0.6, 1.2],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        'rgba(255, 99, 132, 0.3)',
+                        'rgba(54, 162, 235, 0.3)',
+                        'rgba(255, 206, 86, 0.3)',
+                        'rgba(75, 192, 192, 0.3)'
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        'rgba(75, 192, 192, 1)'
                     ],
-                    borderWidth: 1
                 }]
             },
             options: {
@@ -173,8 +138,11 @@
                 }
             }
         });
+       
         </script>
+<script>
 
+</script>
     </div>
       <div class='child'>
         <!-- Chart 2 = this is the pie chart and will compare the dv percent values (k, phos, sodium)-->
@@ -187,24 +155,12 @@
                 labels: ['Sodium', 'Potassium (K)', 'Phosphorus (Phos)'],
                 datasets: [{
                     label: 'Percent of DV',
-                    data: [12, 19, 3],
+                    data: [{{micros.sodium}}, {{micros.k}} , {{micros.phos}} ],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        'rgba(255, 99, 132, 0.3)',
+                        'rgba(54, 162, 235, 0.3)',
+                        'rgba(255, 206, 86, 0.3)'
                     ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
                 }]
             },
             options: {
@@ -220,11 +176,10 @@
       </div>
     </div>
 
-  </section>
+
 
   <section class="parent">
-    <br>
-    <br>
+
     <h1 class="text-center">Let's see what your water intake is looking like... </h1>
     <div class="child">
    
@@ -253,7 +208,7 @@
             rungraph(array);
 
             // if (inputVal > 0.1) {
-            //   output = 'hi'
+            //   output = ''
             // }
           
             // alert(output)
@@ -270,7 +225,7 @@
          <canvas id="myChart3" width="400" height="400" ></canvas>
          <script>
         function rungraph(array){
-          
+        
          const ctx = document.getElementById('myChart3').getContext('2d');
          const myChart = new Chart(ctx, {
              type: 'bar',
@@ -309,14 +264,50 @@
              
          });
 
-      
-         
          }
-        
-         
          </script>
     </div>
     
   </section>
+
+
+   <!--Journal Entry display and Editing-->
+   <section class='text-center container-sm'>
+    <br>
+    <h1><b>JOURNAL ENTRIES</b></h1>
+        
+    <a class='btn btn-primary' href="{% url 'addJournalEntry' %}">Add Entry</a>
+  
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Meal</th>
+                  <th scope="col">Food</th>
+                  <th scope="col">Servings</th>
+                </tr>
+              </thead> 
+              <tbody>
+              {% for journalentry in journalentry %}
+                <tr>
+                  <td>{{journalentry.date}}</td>
+                  <td>{{journalentry.meal}}</td>
+                  <td>{{journalentry.food_name}}</td>
+                  <td>{{journalentry.servings}}</td>
+                  <td><a class="btn btn-primary" href="{% url 'showSingleEntry' journalentry_id=journalentry.id %}">Edit</a></td>
+                  <td><a class="btn btn-primary" href="{% url 'deleteEntry' journalentry_id=journalentry.id %}">Delete</a></td>
+                </tr>
+              {% endfor %} 
+              </tbody>
+            </table> 
+    </section>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+   
       
 {% endblock %}
