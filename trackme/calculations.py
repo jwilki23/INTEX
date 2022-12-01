@@ -1,11 +1,13 @@
-from trackme.models import JournalEntry
+from trackme.models import JournalEntry, Person, LabReport, Stage, Morbidity
+from decimal import Decimal
 
-def calcTotals(journals) :
+def calcTotals(journals, current_person) :
     sodium = 0
     protein = 0
     water = 0
     k = 0
     phos = 0
+    weight = current_person.weight * Decimal(0.45359237)
 
     for entry in journals :
         sodium += entry.DV_sodium
@@ -13,10 +15,12 @@ def calcTotals(journals) :
         water += entry.DV_water
         k += entry.DV_k
         phos += entry.DV_phos
+    #take total protein and make per kg
+    perkg = round((protein/weight), 2)
 
     totals = {
        'sodium' : sodium, 
-       'protein' :  protein, 
+       'protein' :  perkg, 
        'water' :  water, 
        'k' :  k, 
        'phos' :  phos

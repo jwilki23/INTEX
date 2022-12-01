@@ -12,6 +12,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
 from trackme.models import JournalEntry
 from trackme.calculations import calcTotals, calcStage, alert
+from datetime import date
 
 from django.shortcuts import redirect
 # Create your views here.
@@ -44,18 +45,18 @@ def myDataPageView(request) :
     current_person = Person.objects.get(user_name = current_user)
     stage_id = current_person.stage_id
     stage = Stage.objects.get(id=stage_id)
-    #data = entries(person_id__in=current_person)
-    #data = JournalEntry.objects.get(person_id = current_person)
 
-    non_users = Person.objects.exclude(id=current_person.id)
-    unordered_data = JournalEntry.objects.exclude(person_id__in=non_users)
-    ordered_entries = unordered_data.order_by('date')
-
+    #organize entries by date and person
+    unordered_data = JournalEntry.objects.filter(person_id = current_person)
+    ordered_entries = unordered_data.order_by('-date' )
+    today = date.today()
+    today_entries = ordered_entries.filter(date=today)
 
     morbidities = current_person.morbidity_type.all()
-    micro_totals = calcTotals(unordered_data)
+    micro_totals = calcTotals(today_entries, current_person)
     stage_micros = calcStage(stage, current_person)
     alerts = alert(micro_totals, stage_micros)
+
     context = {
         'alerts' : alerts,
         'stageMicros' : stage_micros,
