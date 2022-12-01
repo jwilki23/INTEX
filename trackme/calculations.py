@@ -36,9 +36,11 @@ def calcStage(stage, person) :
     if person.gender == "male" :
         waterul = stage.healthy_dv_water_ul_men
         waterll = stage.healthy_dv_water_ll_men
+        
     else: 
         waterul = stage.healthy_dv_water_ul_women
         waterll = stage.healthy_dv_water_ll_women
+       
     kul = stage.healthy_dv_k_ul
     kll = stage.healthy_dv_k_ll
     phosul = stage.healthy_dv_phos_ul
@@ -55,6 +57,7 @@ def calcStage(stage, person) :
         'kll' :  kll, 
         'phosul' :  phosul,
         'phosll' : phosll,
+        
     }
     return(stageValues)
 
