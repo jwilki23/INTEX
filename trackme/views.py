@@ -41,11 +41,14 @@ def myDataPageView(request) :
     current_user = request.user.username
     current_person = Person.objects.get(user_name = current_user)
 
-  #  data = entries(person_id__in=current_person)
-    #data = JournalEntry.objects.get(person_id = current_person)
     non_users = Person.objects.exclude(id=current_person.id)
     unordered_data = JournalEntry.objects.exclude(person_id__in=non_users)
     data = unordered_data.order_by('date')
+
+    data1 = JournalEntry.objects.all()
+    context = {
+        'data': data1,
+    }
 
     morbidities = current_person.morbidity_type.all()
 

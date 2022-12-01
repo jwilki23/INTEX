@@ -157,51 +157,96 @@
     <br>
     <h1 class="text-center">Let's see what your water intake is looking like... </h1>
     <div class="child">
-      <!-- Here is the water graph to track your water -->
-      <canvas id="myChart3" width="400" height="400" ></canvas>
+   
+  <div class="child">
+    <div class = "border p-3 shadow">
+      <h4>Water Intake (L):</h4>
+      <hr>
+      <form method="POST">
+          {% csrf_token %}
+          {{ form }}
+          <!-- <label for="water_intake">Add your water intake here:</label>
+          <input type="text" name='water-intake' id='value'  >
+          <input class = 'btn btn-success btn-block' type='submit' id='value' value = 'Log my intake!'> -->
+          <input type="text" placeholder="Type something..." id="myInput">
+          <button type="button" onclick="getInputValue();">Log my intake!</button>
+          
+      </form>
       <script>
-      const ctx = document.getElementById('myChart3').getContext('2d');
-      const myChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-              labels: ['Your Intake', "Men need 3.7L/day", 'Women need 2.7L/day'], // days go here
-              datasets: [{
-                  label: 'L/day of Water',
-                  data: [3.2, 2.8, 1.9], // amount of water goes here
-                  backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
-                  ],
-                  borderColor: [
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                  ],
-                  borderWidth: 1
-              }]
-          },
-          options: {
-            responsive: false,
-              scales: {
-                  y: {
-                      beginAtZero: true
-                  }
-              }
-          }
-      });
+      function getInputValue(){
+            // Selecting the input element and get its value 
+            var inputVal = document.getElementById("myInput").value;
+            
+            // Displaying the value
+            var array = [3.7, 2.7];
+            array.unshift(inputVal);
+            rungraph(array);
+
+            // if (inputVal > 0.1) {
+            //   output = 'hi'
+            // }
+          
+            // alert(output)
+        }
+
+        
       </script>
+  </div>
     </div>
 
-    <div class="child">
-        this should be on the right
+
+    <div>
+         <!-- Here is the water graph to track your water -->
+         <canvas id="myChart3" width="400" height="400" ></canvas>
+         <script>
+        function rungraph(array){
+          
+         const ctx = document.getElementById('myChart3').getContext('2d');
+         const myChart = new Chart(ctx, {
+             type: 'bar',
+             data: {
+                 labels: ['Your Intake', "Men need 3.7L/day", 'Women need 2.7L/day'], // days go here
+                 datasets: [{
+                     label: 'L/day of Water',
+                     data: array, // amount of water goes here
+                     backgroundColor: [
+                         'rgba(255, 99, 132, 0.2)',
+                         'rgba(54, 162, 235, 0.2)',
+                         'rgba(255, 206, 86, 0.2)',
+                         'rgba(75, 192, 192, 0.2)',
+                         'rgba(153, 102, 255, 0.2)',
+                         'rgba(255, 159, 64, 0.2)'
+                     ],
+                     borderColor: [
+                         'rgba(255, 99, 132, 1)',
+                         'rgba(54, 162, 235, 1)',
+                         'rgba(255, 206, 86, 1)',
+                         'rgba(75, 192, 192, 1)',
+                         'rgba(153, 102, 255, 1)',
+                         'rgba(255, 159, 64, 1)'
+                     ],
+                     borderWidth: 1
+                 }]
+             },
+             options: {
+               responsive: false,
+                 scales: {
+                     y: {
+                         beginAtZero: true
+                     }
+                 }
+             }
+             
+         });
+
+      
+         
+         }
+        
+         
+         </script>
     </div>
+    
   </section>
       
 {% endblock %}
