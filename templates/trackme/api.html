@@ -1,9 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<select name="stage" id="stage">
-  {% for stage in stage %}
-  <option value="{{ stage.id }}">{{ stage.stage_name }}</option>
-  {% endfor %}
-</select>
+
+<br><br><br><br><br><br>
+<form method="GET" action="{% url 'api' %}">
+  <input type="text" name="food" id="food">
+  <!-- <input class="btn" type="submit" value="search food"> -->
+  <button type="submit">Search</button>
+</form>
+<form method="post" action="{% url 'api' %}">
+  {% csrf_token %}
+  <select name="food_id" id="food_id">
+    {% for item in data %}
+    <option value="{{ item.item_id }}">{{ item.item_name }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit">Select</button>
+</form>
+<div>
+    {% for item in nutrient_data %}
+    <p value="{{ item.nutrient_name }}">{{ item.nutrient_name }} </p>
+    {% endfor %}
+</div>
 {% endblock %}
