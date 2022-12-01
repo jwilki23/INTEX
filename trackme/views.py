@@ -160,7 +160,7 @@ def addJournalEntryPageView (request) :
     
         journalentry.date = request.POST['date']
         journalentry.meal = request.POST['meal']
-        journalentry.food_name = request.POST['food_name']
+        journalentry.food_name = request.POST['food_name'].title()
         journalentry.servings = request.POST['servings']
         journalentry.person = Person.objects.get(user_name = current_user_name)
 

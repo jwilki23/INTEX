@@ -178,11 +178,29 @@ ul {
   padding-left: 2rem;
 }
 
+.yourdiv
+{
+    display: inline;
+    inline-size: 10px;
+
+}
+
 ol,
 ul,
 dl {
   margin-top: 0;
   margin-bottom: 1rem;
+}
+
+.parent {
+  margin: 1cm;
+  padding: 3cm 3cm;
+  text-align: center;
+}
+.child {
+  display: inline-block;
+  padding: 1rem 1rem;
+  vertical-align: middle;
 }
 
 ol ol,
