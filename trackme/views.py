@@ -203,23 +203,23 @@ def addNewMorbidityPageView(request) :
     return myDataPageView(request)
 
 def apiPageView(request) : 
-    if request.method == 'post' : 
-        food_id = request.GET.get('food_id')
+    if request.method == 'POST' : 
+        search_item = request.GET.get('food')
+        data = searchItemName(search_item)
+        food_id = request.POST['food_id']
         nutrient_data = getNutrients(search_item, food_id)
 
-        context2 = {
-            "nutrient_data" : nutrient_data
+        context = {
+            "nutrient_data" : nutrient_data,
+            "data" : data
         }
     
-        return render(request, 'trackme/api.html', context2)
+        return render(request, 'trackme/api.html', context)
     else: 
         search_item = request.GET.get('food')
         data = searchItemName(search_item)
-        # food_id = request.GET.get('food_id')
-        # nutrient_data = getNutrients(search_item, food_id)
         context = {
             "data" : data
-            # "nutrient_data" : nutrient_data
         }
         return render(request, 'trackme/api.html', context)
 
