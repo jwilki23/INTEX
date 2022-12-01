@@ -201,6 +201,9 @@ def addNewMorbidityPageView(request) :
 
     return myDataPageView(request)
 
+def apiPageView(request) : 
+    return render(request, 'trackme/api.html')
+
 
 
 

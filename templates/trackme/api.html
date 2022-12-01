@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<select name="stage" id="stage">
+  {% for stage in stage %}
+  <option value="{{ stage.id }}">{{ stage.stage_name }}</option>
+  {% endfor %}
+</select>
+{% endblock %}
