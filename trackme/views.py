@@ -44,17 +44,13 @@ def myDataPageView(request) :
     current_person = Person.objects.get(user_name = current_user)
     stage_id = current_person.stage_id
     stage = Stage.objects.get(id=stage_id)
-  #  data = entries(person_id__in=current_person)
+    #data = entries(person_id__in=current_person)
     #data = JournalEntry.objects.get(person_id = current_person)
 
     non_users = Person.objects.exclude(id=current_person.id)
     unordered_data = JournalEntry.objects.exclude(person_id__in=non_users)
     ordered_entries = unordered_data.order_by('date')
 
-    data1 = JournalEntry.objects.all()
-    context = {
-        'data': data1,
-    }
 
     morbidities = current_person.morbidity_type.all()
     micro_totals = calcTotals(unordered_data)
