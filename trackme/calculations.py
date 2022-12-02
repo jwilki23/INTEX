@@ -4,7 +4,6 @@ from decimal import Decimal
 def calcTotals(journals, current_person) :
     sodium = 0
     protein = 0
-    water = 0
     k = 0
     phos = 0
     weight = current_person.weight * Decimal(0.45359237)
@@ -12,7 +11,6 @@ def calcTotals(journals, current_person) :
     for entry in journals :
         sodium += entry.DV_sodium
         protein += entry.DV_protein
-        water += entry.DV_water
         k += entry.DV_k
         phos += entry.DV_phos
     #take total protein and make per kg
@@ -21,7 +19,6 @@ def calcTotals(journals, current_person) :
     totals = {
        'sodium' : sodium, 
        'protein' :  perkg, 
-       'water' :  water, 
        'k' :  k, 
        'phos' :  phos
        }
@@ -33,13 +30,13 @@ def calcStage(stage, person) :
     sodiumll = stage.healthy_dv_sodium_ll
     proteinul = stage.healthy_dv_protein_ul
     proteinll = stage.healthy_dv_protein_ll
-    if person.gender == "male" :
-        waterul = stage.healthy_dv_water_ul_men
-        waterll = stage.healthy_dv_water_ll_men
+    # if person.gender == "male" :
+    #     waterul = stage.healthy_dv_water_ul_men
+    #     waterll = stage.healthy_dv_water_ll_men
         
-    else: 
-        waterul = stage.healthy_dv_water_ul_women
-        waterll = stage.healthy_dv_water_ll_women
+    # else: 
+    #     waterul = stage.healthy_dv_water_ul_women
+    #     waterll = stage.healthy_dv_water_ll_women
        
     kul = stage.healthy_dv_k_ul
     kll = stage.healthy_dv_k_ll
@@ -51,8 +48,6 @@ def calcStage(stage, person) :
         'sodiumll' : sodiumll,
         'proteinul' :  proteinul, 
         'proteinll' :  proteinll, 
-        'waterul' :  waterul, 
-        'waterll' : waterll,
         'kul' : kul,
         'kll' :  kll, 
         'phosul' :  phosul,
@@ -72,7 +67,6 @@ def alert(micros, stages) :
     alerts = {
        'sodium' : checkRange(micros['sodium'], stages['sodiumll'], stages['sodiumul']),
        'protein' :  checkRange(micros['protein'], stages['proteinll'], stages['proteinul']),
-       'water' :  checkRange(micros['water'], stages['waterll'], stages['waterul']),
        'k' :  checkRange(micros['k'], stages['kll'], stages['kul']),
        'phos' :  checkRange(micros['phos'], stages['phosll'], stages['phosul'])
        }
