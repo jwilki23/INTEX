@@ -138,7 +138,7 @@
         <br>
     </div>
     <br>
-    <form name='form' method='post' action="{% url 'addJournalEntry' %}">
+    <form name='form' method='post' action="{% url 'mydata' %}">
        {% csrf_token %}
        <input type="hidden" id='journalentry_id' name='journalentry_id' value='{{record.id}}'>
 

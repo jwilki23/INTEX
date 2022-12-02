@@ -12,6 +12,8 @@ from .views import deleteEntryPageView
 from .views import addJournalEntryPageView
 from .views import addMorbidEntryPageView
 from .views import addNewMorbidityPageView
+from .views import apiPageView
+from .views import displayPageView
 # from .views import showMainEntryPageView
 
 
@@ -30,5 +32,7 @@ urlpatterns = [
     path('deleteentry/<int:journalentry_id>/', deleteEntryPageView, name='deleteEntry'),
     path("addMorbidEntry/", addMorbidEntryPageView, name="addMorbidEntry"),
     path("addNewMorbidity/", addNewMorbidityPageView, name="addNewMorbidity"),
+    path('api/', apiPageView, name='api'),
+    path('display/', displayPageView, name='display'),
     path("", indexPageView, name="index"),
 ]

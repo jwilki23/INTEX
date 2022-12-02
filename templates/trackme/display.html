@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <br><br><br><br><br>
+    {% for thing in food_item %}
+    <p>{{ thing.nutrient_name }} {{thing.value}} </p>
+    {% endfor %}
+{% endblock %}
