@@ -13,7 +13,7 @@ from .forms import SignUpForm
 from trackme.models import JournalEntry
 from trackme.calculations import calcTotals, calcStage, alert
 from datetime import date
-from .api import searchItemName2, getNutrients, searchItem, idSearch
+from .api import searchItemName2, getNutrients, searchItem, idSearch, assignMicros
 
 from django.shortcuts import redirect
 # Create your views here.
@@ -226,8 +226,10 @@ def apiPageView(request) :
             try:
                 int(searchItem)
                 food_item = idSearch(searchItem)
+                ordered_micros = assignMicros(food_item)
                 context2 = {
-                    "food_item" : food_item,
+                    'ordered_micros' : ordered_micros,
+                   # "food_item" : food_item,
                 }
                 value = False
                 return render (request, 'trackme/addJournalEntry.html', context2)
