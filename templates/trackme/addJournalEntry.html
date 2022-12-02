@@ -36,20 +36,20 @@
        <input type="number" name='servings' id='servings' value='{{record.servings}}' >
        <br><br>
 
-       <label for="protein">Protein:</label>
-       <input type="number" name='protein' id='protein' value='{{record.DV_protein}}' >
+       <label for="protein">Protein (g):</label>
+       <input type="number" name='protein' id='protein' value='{{ordered_micros.0}}' >
        <br><br>
 
-       <label for="sodium">Sodium:</label>
-       <input type="number" name='sodium' id='sodium' value='{{record.DV_sodium}}' >
+       <label for="sodium">Sodium (mg):</label>
+       <input type="number" name='sodium' id='sodium' value='{{ordered_micros.1}}' >
        <br><br>
 
-       <label for="k">Postassium:</label>
-       <input type="number" name='k' id='k' value='{{record.DV_k}}' >
+       <label for="k">Postassium (mg):</label>
+       <input type="number" name='k' id='k' value='{{ordered_micros.2}}' >
        <br><br>
        
-       <label for="phos">Phosphorus:</label>
-       <input type="number" name='phos' id='phos' value='{{record.DV_phos}}' >
+       <label for="phos">Phosphorus (mg):</label>
+       <input type="number" name='phos' id='phos' value='{{ordered_micros.3}}' >
        <br><br>
 
        <button class='btn btn-primary' type='submit'>Update</button>

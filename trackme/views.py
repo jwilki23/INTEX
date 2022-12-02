@@ -13,7 +13,7 @@ from .forms import SignUpForm
 from trackme.models import JournalEntry
 from trackme.calculations import calcTotals, calcStage, alert
 from datetime import date
-from .api import searchItemName2, getNutrients, searchItem, idSearch
+from .api import searchItemName2, getNutrients, searchItem, idSearch, assignMicros
 
 from django.shortcuts import redirect
 # Create your views here.
@@ -160,25 +160,29 @@ def updateJournalEntryPageView (request) :
         journalentry.save()
     return redirect('mydata')
 
-
+from decimal import Decimal
 def addJournalEntryPageView (request) :
     if request.method == 'POST' :
         
         current_user_name = request.user.username
         journalentry = JournalEntry()
 
-        # journalentry_id = request.POST['journalentry_id']
-
-        # journalentry = JournalEntry.objects.get(id=journalentry_id)
+        #multiply micros by serving number
+        servings = request.POST['servings']
+        protein = Decimal(request.POST['protein']) * Decimal(servings)
+        sodium = Decimal(request.POST['sodium']) * Decimal(servings)
+        k = Decimal(request.POST['k']) * Decimal(servings)
+        phos = Decimal(request.POST['phos']) * Decimal(servings)
     
+        #Journal entry should match final values
         journalentry.date = request.POST['date']
         journalentry.meal = request.POST['meal']
         journalentry.food_name = request.POST['food_name'].title()
-        journalentry.servings = request.POST['servings']
-        journalentry.DV_protein = request.POST['protein']
-        journalentry.DV_sodium = request.POST['sodium']
-        journalentry.DV_k = request.POST['k']
-        journalentry.DV_phos = request.POST['phos']
+        journalentry.servings = servings
+        journalentry.DV_protein = protein
+        journalentry.DV_sodium = sodium
+        journalentry.DV_k = k
+        journalentry.DV_phos = phos
         journalentry.person = Person.objects.get(user_name = current_user_name)
 
         journalentry.save()
@@ -226,7 +230,9 @@ def apiPageView(request) :
             try:
                 int(searchItem)
                 food_item = idSearch(searchItem)
+                ordered_micros = assignMicros(food_item)
                 context2 = {
+                    'ordered_micros' : ordered_micros,
                     "food_item" : food_item,
                 }
                 value = False
