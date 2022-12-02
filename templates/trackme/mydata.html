@@ -25,7 +25,7 @@
                 <p>No Morbitities!</p>
           {% endfor %} 
   </section>
-
+  <br><br><br><br>
 <!--Daily totals -->
 <section class='text-center container-sm'>
   <br>
@@ -51,7 +51,7 @@
         </tbody>
     </table>
     <br>
-    <h2><b>Healthy Intake Ranges:</b></h2>
+    <h2>Healthy Intake Ranges:</h2>
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -62,6 +62,7 @@
                 <th scope="col">Phosphorus Intake</th>
             </tr>
         </thead>
+        <br>
         <tbody>
             <tr>
                 <td>{{stageMicros.sodiumll}} - {{stageMicros.sodiumul}} mg</td>
@@ -72,7 +73,9 @@
             </tr>
         </tbody>
     </table>
-    <h2 ><b>Intake Alerts:</b></h2>
+    <br>
+    <br>
+    <h2 >Intake Alerts:</h2>
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -95,22 +98,8 @@
             </tr>
         </tbody>
     </table>
-    {% comment %} {% with 'alerts.sodium alerts.protein alerts.water alerts.k {{alerts.phos}}' as list %}
-  {% for i in list.split %}
-  {% comment %} {% if alerts.i == 'Daily intake is lower than recommended'%} {% endcomment %}
-    {% comment %} {% else %} {% endcomment %}
-    {% comment %} {{ alerts.i }}<br> {% endcomment %}
-    {% comment %} {% endif %} {% endcomment %}
-  {% comment %} {% endfor %}
-{% comment %} {% endwith %} {% endcomment %}
 </section>
 
- {% comment %} <br>
- <br>
- <br>
- <br>
-
-  <h1 class="text-center">Let's take a look closer look at your micronutrient intake... </h1> {% endcomment %}
 
 
     <div class='parent'>
@@ -186,7 +175,70 @@
       </div>
     </div>
 
+    <script>
+      var sodium = (document.getElementById("sodium")).innerHTML;
+      alert(sodium)
+    </script>
+    <!-- Make suggstions to improve health -->
+    <h3 class="text-center">Here's what we suggest... </h3> 
+  <section class='parent1'>
+    <div>
+      <!-- Sodium -->
+      <div class="child">
+        <h6> Sodium: </h6>
+        {% if alerts.sodium == 'Daily intake is in the recommended range!' %} 
+          <p>You're sodium levels are looking great! Keep it up! </p>
+        {% elif alerts.sodium == 'Daily intake is lower than recommended' %} 
+          <p><span style="color:#FF0000">LOW Sodium</span>. Looks like you’re eating not enough sodium, I would suggest eating 
+            more canned vegetables, salted nuts, or eggs.</p>
+        {% else %}
+          <p><span style="color:#FF0000">HIGH Sodium</span>. Looks like you’re eating too much sodium, 
+            I would suggest eating less processed foods and buying more fresh foods. 
+            <p>Avoid Breads and rolls, Pizzas, Sandwiches, cured meats, Burritos and tacos.</p>
+            </p>
+        {% endif %} 
+      </div>
 
+      <!-- Protein -->
+      <div class="child">
+        <h6> Protein: </h6>
+      {% if alerts.protein == 'Daily intake is in the recommended range!' %} 
+        <p>You're protein levels are great! Congrats! </p>
+      {% elif alerts.protein == 'Daily intake is lower than recommended' %} 
+        <p> <span style="color:#FF0000">LOW Protein</span>. Looks like you are eating not enough protein, I would suggest eating more meat, eggs, or dairy.</p>
+      {% else %}
+        <p> <span style="color:#FF0000">HIGH Protein</span>. Looks like you are eating too much protein, I would suggest eating less meat, eggs, or dairy.</p>
+      {% endif %} 
+      </div>
+
+
+      <!-- Potassium -->
+      <div class="child">
+        <h6> Potassium: </h6>
+      {% if alerts.k == 'Daily intake is in the recommended range!' %} 
+        <p>Your potassium levels are looking good!</p>
+      {% elif alerts.k == 'Daily intake is lower than recommended' %} 
+        <p> <span style="color:#FF0000">LOW Potassium</span>. Looks like you are eating not enough potassium, I would suggest eating more bananas, potatoes, or tomatoes.</p>
+      {% else %}
+        <p> <span style="color:#FF0000">HIGH Potassium</span>. Looks like you are eating too much potassium, I would suggest eating more fruits and pastas.</p>
+      {% endif %} 
+      </div>
+
+      <!-- Phos -->
+      <div class="child">
+        <h6> Phosphorus: </h6>
+      {% if alerts.phos == 'Daily intake is in the recommended range!' %} 
+        <p>Your phosphorus levels are great. Keep it up!</p>
+      {% elif alerts.phos == 'Daily intake is lower than recommended' %} 
+        <p> <span style="color:#FF0000">LOW Potassium</span>. Looks like you are eating not enough Phosphorus, I would suggest eating more meat, bran cereals, dairy foods.</p>
+      {% else %}
+        <p> <span style="color:#FF0000">HIGH Potassium</span>. Looks like you are eating too much Phosphorus, I would suggest eating more fresh foods, bread, or pasta.</p>
+      {% endif %} 
+      </div>
+
+    </div>
+  </section>
+  
 
   <section class="parent">
 
