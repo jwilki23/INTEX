@@ -36,20 +36,20 @@
        <input type="number" name='servings' id='servings' value='{{record.servings}}' >
        <br><br>
 
-       <label for="protein">Protein(g):</label>
-       <input type="number" name='protein' id='protein' value='0' >
+       <label for="protein">Protein (g):</label>
+       <input type="number" name='protein' id='protein' value='{{ordered_micros.0}}' >
        <br><br>
 
-       <label for="sodium">Sodium(mg):</label>
-       <input type="number" name='sodium' id='sodium' value='0' >
+       <label for="sodium">Sodium (mg):</label>
+       <input type="number" name='sodium' id='sodium' value='{{ordered_micros.1}}' >
        <br><br>
 
-       <label for="k">Postassium(mg):</label>
-       <input type="number" name='k' id='k' value='0' >
+       <label for="k">Postassium (mg):</label>
+       <input type="number" name='k' id='k' value='{{ordered_micros.2}}' >
        <br><br>
        
-       <label for="phos">Phosphorus(mg):</label>
-       <input type="number" name='phos' id='phos' value='0' >
+       <label for="phos">Phosphorus (mg):</label>
+       <input type="number" name='phos' id='phos' value='{{ordered_micros.3}}' >
        <br><br>
 
        <button type='submit'>Update</button>
@@ -64,8 +64,6 @@
             <p>{{ thing.nutrient_name }} {{thing.value}} </p>
             {% endfor %}
     </div>
-    {{food_item}}
-    {{ordered_micros}}
 </div>
 </section>
 <br>

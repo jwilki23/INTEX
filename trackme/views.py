@@ -229,7 +229,7 @@ def apiPageView(request) :
                 ordered_micros = assignMicros(food_item)
                 context2 = {
                     'ordered_micros' : ordered_micros,
-                   # "food_item" : food_item,
+                    "food_item" : food_item,
                 }
                 value = False
                 return render (request, 'trackme/addJournalEntry.html', context2)
