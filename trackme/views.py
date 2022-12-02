@@ -154,7 +154,7 @@ def updateJournalEntryPageView (request) :
         # journalentry.person = request.POST['person']
 
         journalentry.save()
-    return myDataPageView(request)
+    return redirect('mydata')
 
 
 def addJournalEntryPageView (request) :
