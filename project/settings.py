@@ -1,3 +1,6 @@
+#INTEX Project for the National Kidney Foundation
+# Authors: Jacob Wilkinson, Johnny Paulsen, Kamron Richards, Bennett McCullough, and Brock Smiley
+
 """
 Django settings for project project.
 
