@@ -31,11 +31,6 @@ class SignupView(CreateView) :
 
 class LogoutInterfaceView(LogoutView) :
     template_name = 'trackme/logout.html'
-class LoginInterfaceView(LoginView) :
-    template_name = 'trackme/login2.html'
-
-# def indexPageView(request) :
-#     return HttpResponse('Welcome to the index page')
 
 def indexPageView(request) :
     return render(request, 'trackme/index.html')
@@ -179,7 +174,7 @@ def addJournalEntryPageView (request) :
         journalentry.person = Person.objects.get(user_name = current_user_name)
 
         journalentry.save()
-        return myDataPageView(request)
+        return redirect('mydata')
 
     else:
         return render(request, 'trackme/addJournalEntry.html')
@@ -227,6 +222,7 @@ def apiPageView(request) :
                     "food_item" : food_item,
                 }
                 value = False
+                return render (request, 'trackme/addJournalEntry.html', context2)
                 return displayPageView(request, context2)  
             except:
                 data = searchItemName2(searchItem)
