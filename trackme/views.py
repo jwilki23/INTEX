@@ -163,7 +163,7 @@ def updateJournalEntryPageView (request) :
         # journalentry.person = request.POST['person']
 
         journalentry.save()
-    return myDataPageView(request)
+    return redirect('mydata')
 
 
 def addJournalEntryPageView (request) :
@@ -187,7 +187,7 @@ def addJournalEntryPageView (request) :
         journalentry.person = Person.objects.get(user_name = current_user_name)
 
         journalentry.save()
-        return myDataPageView(request)
+        return redirect('mydata')
 
     else:
         return render(request, 'trackme/addJournalEntry.html')

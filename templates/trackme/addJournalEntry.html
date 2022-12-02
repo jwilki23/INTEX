@@ -138,7 +138,7 @@
         <br>
     </div>
     <br>
-    <form name='form' method='post' action="{% url 'mydata' %}">
+    <form name='form' method='post' action="{% url 'addJournalEntry' %}">
        {% csrf_token %}
        <input type="hidden" id='journalentry_id' name='journalentry_id' value='{{record.id}}'>
 
@@ -164,19 +164,19 @@
        <br><br>
 
        <label for="protein">Protein:</label>
-       <input type="number" name='servings' id='servings' value='{{record.DV_protein}}' >
+       <input type="number" name='protein' id='protein' value='{{record.DV_protein}}' >
        <br><br>
 
        <label for="sodium">Sodium:</label>
-       <input type="number" name='servings' id='servings' value='{{record.DV_sodium}}' >
+       <input type="number" name='sodium' id='sodium' value='{{record.DV_sodium}}' >
        <br><br>
 
        <label for="k">Postassium:</label>
-       <input type="number" name='servings' id='servings' value='{{record.DV_k}}' >
+       <input type="number" name='k' id='k' value='{{record.DV_k}}' >
        <br><br>
        
        <label for="phos">Phosphorus:</label>
-       <input type="number" name='servings' id='servings' value='{{record.DV_phos}}' >
+       <input type="number" name='phos' id='phos' value='{{record.DV_phos}}' >
        <br><br>
 
        <button type='submit'>Update</button>
