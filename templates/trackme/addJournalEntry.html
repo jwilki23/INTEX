@@ -1,144 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% comment %} <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-  
-    <title>Journal Entry Form</title>
-  </head>
-  
-  <body class="container bg-light">
-    <!-- Start Header form -->
-    <div class="text-center pt-5">
-        <img src="https://www.kindpng.com/picc/m/334-3347509_healthy-food-clipart-healthy-food-cartoon-hd-png.png" alt="Healthy Food Clipart - Healthy Food Cartoon, HD Png"  width="105" height="105" />
-      <h2>Meal Journal Entry Form</h2>
-      <p>
-        Enter your meal information below to log your nutritional information
-      </p>
-    </div>
-    <!-- End Header form -->
-  
-    <!-- Start Card -->
-    <div class="card">
-      <!-- Start Card Body -->
-      <div class="card-body">
-        <!-- Start Form -->
-        <form id="bookingForm" action="#" method="" class="needs-validation" novalidate autocomplete="off">
-          <!-- Start Input Name -->
-          <div class="form-group">
-            <label for="inputName">Name of Food</label>
-            <input type="text" class="form-control" id="inputName" name="name" placeholder="Chicken, Corn, Rice..." required />
-            <small class="form-text text-muted">Please fill in food name</small>
-          </div>
-          <!-- End Input Name -->
-  
-          <!-- Start Input Number of Servings -->
-          <div class="form-group">
-            <label for="inputPhone">Number of Servings</label>
-            <input type="tel" class="form-control" id="inputPhone" name="phone" placeholder="1,2,3..."  required />
-            <small class="form-text text-muted">Enter the number of servings</small>
-          </div>
-          <!-- End Input Telephone (aka servings now lol)-->
-  
-          <!-- Start Input Date , Start Time and End Time -->
-          <div class="form-row">
-            <!-- Start Input Date -->
-            <div class="form-group col-md-4">
-              <label for="inputDate">Date</label>
-              <input type="date" class="form-control" id="inputDate" name="date" required />
-              <small class="form-text text-muted">Enter the day of the meal</small>
-            </div>
-            <!-- End Input Date -->
-  
-
-          </div>
-          <!-- End Input Date , Start Time and End Time -->
-  
-          <!-- Start check meal type-->
-          <div class="form-group">
-            <legend class="col-form-label pt-0">Choose A Meal</legend>
-            <div class="form-check form-check-inline">
-              <input type="radio" class="form-check-input" id="inlineRadioType1" name="roomType" value="type1" required />
-              <label class="form-check-label" for="inlineRadioType1">Breakfast</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input type="radio" class="form-check-input" id="inlineRadioType2" name="roomType" value="type2" required />
-              <label class="form-check-label" for="inlineRadioType2">Lunch</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input type="radio" class="form-check-input" id="inlineRadioType3" name="roomType" value="type3" required />
-              <label class="form-check-label" for="inlineRadioType3">Dinner</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input type="radio" class="form-check-input" id="inlineRadioType4" name="roomType" value="type4" required />
-              <label class="form-check-label" for="inlineRadioType4">Snack</label>
-            </div>
-          </div>
-          <!-- End Check Meal Type -->
-
-        
-  
-          <!-- Start Submit Button -->
-          <button class="btn btn-primary btn-block col-lg-2" type="submit">Submit</button>
-          <!-- End Submit Button -->
-        </form>
-        <!-- End Form -->
-      </div>
-      <!-- End Card Body -->
-    </div>
-    <!-- End Card -->
-    <footer>
-      <div class="my-4 text-muted text-center">
-      </div>
-    </footer>
-  
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  
-    <!-- Start Scritp for Form -->
-    <script>
-      // Example starter JavaScript for disabling form submissions if there are invalid fields
-      (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-          // Fetch all the forms we want to apply custom Bootstrap validation styles to
-          var forms = document.getElementsByClassName('needs-validation');
-          // Loop over them and prevent submission
-          var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-              if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-              }
-              form.classList.add('was-validated');
-            }, false);
-          });
-        }, false);
-      })();
-    </script>
-    <!-- End Scritp for Form -->
-  
-  </body>    {% endcomment %}
-
-  <div class='container'>
+<section class='parent'>
+  <div class='child' >
+  {% comment %} <div class='container'> {% endcomment %}
     <div class='text-left'>
-        <br>
-        <br>
         <br>
         <br>
         <h2 class='section-heading text-uppercase'>Add a Joural Entry</h2>
         <br>
     </div>
     <br>
-    <form name='form' method='post' action="{% url 'mydata' %}">
+    <form name='form' method='post' action="{% url 'addJournalEntry' %}">
        {% csrf_token %}
        <input type="hidden" id='journalentry_id' name='journalentry_id' value='{{record.id}}'>
 
@@ -163,11 +36,36 @@
        <input type="number" name='servings' id='servings' value='{{record.servings}}' >
        <br><br>
 
-       <button class='btn btn-primary' type='submit'>Update</button>
+       <label for="protein">Protein:</label>
+       <input type="number" name='protein' id='protein' value='{{record.DV_protein}}' >
+       <br><br>
+
+       <label for="sodium">Sodium:</label>
+       <input type="number" name='sodium' id='sodium' value='{{record.DV_sodium}}' >
+       <br><br>
+
+       <label for="k">Postassium:</label>
+       <input type="number" name='k' id='k' value='{{record.DV_k}}' >
+       <br><br>
+       
+       <label for="phos">Phosphorus:</label>
+       <input type="number" name='phos' id='phos' value='{{record.DV_phos}}' >
+       <br><br>
+
+       <button type='submit'>Update</button>
        <br>
        <br>
     </form>
+  </div>
+
+    <div class='child'>
+      <h3> Micros Per Serving:</h3>
+          {% for thing in food_item %}
+            <p>{{ thing.nutrient_name }} {{thing.value}} </p>
+            {% endfor %}
+    </div>
 </div>
+</section>
 <br>
 <br>
 <br>

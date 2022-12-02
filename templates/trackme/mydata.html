@@ -35,7 +35,6 @@
             <tr>
                 <th scope="col">Daily Sodium Intake Total </th>
                 <th scope="col">Daily Protein Intake Total</th>
-                <th scope="col">Daily Water Intake Total</th>
                 <th scope="col">Daily Potassium Intake Total</th>
                 <th scope="col">Daily Phosphorus Intake Total</th>
             </tr>
@@ -44,7 +43,6 @@
             <tr>
                 <td>{{micros.sodium}} mg</td>
                 <td>{{micros.protein}} g/kg</td>
-                <td>{{micros.water}} L/day</td>
                 <td>{{micros.k}} mg</td>
                 <td>{{micros.phos}} mg</td>
             </tr>
@@ -57,7 +55,6 @@
             <tr>
                 <th scope="col">Sodium Intake</th>
                 <th scope="col">Protein Intake</th>
-                <th scope="col">Water Intake</th>
                 <th scope="col">Potassium Intake</th>
                 <th scope="col">Phosphorus Intake</th>
             </tr>
@@ -67,7 +64,6 @@
             <tr>
                 <td>{{stageMicros.sodiumll}} - {{stageMicros.sodiumul}} mg</td>
                 <td>{{stageMicros.proteinll}} - {{stageMicros.proteinul}} g/kg</td>
-                <td>{{stageMicros.waterll}} - {{stageMicros.waterul}} L/day</td>
                 <td>{{stageMicros.kll}} - {{stageMicros.kul}} mg</td>
                 <td>{{stageMicros.phosll}} - {{stageMicros.phosul}} mg</td>
             </tr>
@@ -81,7 +77,6 @@
             <tr>
                 <th scope="col">Sodium Intake</th>
                 <th scope="col">Protein Intake</th>
-                <th scope="col">Water Intake</th>
                 <th scope="col">Potassium Intake</th>
                 <th scope="col">Phosphorus Intake</th>
             </tr>
@@ -89,11 +84,13 @@
         <tbody>
             <tr>
               {% for key, value in alerts.items %} 
+              {% if key != "water" %}
               {% if value == 'Daily intake is lower than recommended' or value == 'Daily intake is higher than recommended' %} 
                 <td style="color:#FF0000">{{value}}</td>
                 {%else%}
                 <td style="color:green";>{{value}}</td>
                 {% endif %} 
+                {% endif %}
               {% endfor %} 
             </tr>
         </tbody>
@@ -338,7 +335,7 @@
     <br>
     <h1><b>JOURNAL ENTRIES</b></h1>
         
-    <a class='btn btn-primary' href="{% url 'addJournalEntry' %}">Add Entry</a>
+    <a class='btn btn-primary' href="{% url 'api' %}">Add Entry</a>
   
             <table class="table">
               <thead class="thead-dark">

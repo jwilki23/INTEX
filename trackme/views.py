@@ -31,11 +31,6 @@ class SignupView(CreateView) :
 
 class LogoutInterfaceView(LogoutView) :
     template_name = 'trackme/logout.html'
-class LoginInterfaceView(LoginView) :
-    template_name = 'trackme/login2.html'
-
-# def indexPageView(request) :
-#     return HttpResponse('Welcome to the index page')
 
 def indexPageView(request) :
     return render(request, 'trackme/index.html')
@@ -156,10 +151,14 @@ def updateJournalEntryPageView (request) :
         journalentry.meal = request.POST['meal']
         journalentry.food_name = request.POST['food_name']
         journalentry.servings = request.POST['servings']
+        journalentry.DV_protein = request.POST['protein']
+        journalentry.DV_sodium = request.POST['sodium']
+        journalentry.DV_k = request.POST['k']
+        journalentry.DV_phos = request.POST['phos']
         # journalentry.person = request.POST['person']
 
         journalentry.save()
-    return myDataPageView(request)
+    return redirect('mydata')
 
 
 def addJournalEntryPageView (request) :
@@ -176,10 +175,14 @@ def addJournalEntryPageView (request) :
         journalentry.meal = request.POST['meal']
         journalentry.food_name = request.POST['food_name'].title()
         journalentry.servings = request.POST['servings']
+        journalentry.DV_protein = request.POST['protein']
+        journalentry.DV_sodium = request.POST['sodium']
+        journalentry.DV_k = request.POST['k']
+        journalentry.DV_phos = request.POST['phos']
         journalentry.person = Person.objects.get(user_name = current_user_name)
 
         journalentry.save()
-        return myDataPageView(request)
+        return redirect('mydata')
 
     else:
         return render(request, 'trackme/addJournalEntry.html')
@@ -227,6 +230,7 @@ def apiPageView(request) :
                     "food_item" : food_item,
                 }
                 value = False
+                return render (request, 'trackme/addJournalEntry.html', context2)
                 return displayPageView(request, context2)  
             except:
                 data = searchItemName2(searchItem)
