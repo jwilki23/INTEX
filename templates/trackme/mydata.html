@@ -13,19 +13,37 @@
       </div>
   </header>
 
-  <!--Morbitity display and Adding-->
+  <!--Journal Entry display and Editing-->
   <section class='text-center container-sm'>
     <br>
-    <h1><b>Your Morbitities:</b></h1>
-    <a class='btn btn-primary' href="{% url 'addMorbidEntry' %}">Add Morbidity</a>
-    <br><br>
-    {% for morbidity in morbidities %}
-              <p>{{morbidity.type_name}}</p>
-              {% empty  %}
-                <p>No Morbitities!</p>
-          {% endfor %} 
-  </section>
-  <br><br><br><br>
+    <h1><b>JOURNAL ENTRIES</b></h1>
+        
+    <a class='btn btn-primary' href="{% url 'api' %}">Add Entry</a>
+  
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Meal</th>
+                  <th scope="col">Food</th>
+                  <th scope="col">Servings</th>
+                </tr>
+              </thead> 
+              <tbody>
+              {% for journalentry in journalentry %}
+                <tr>
+                  <td>{{journalentry.date}}</td>
+                  <td>{{journalentry.meal}}</td>
+                  <td>{{journalentry.food_name}}</td>
+                  <td>{{journalentry.servings}}</td>
+                  <td><a class="btn btn-primary" href="{% url 'showSingleEntry' journalentry_id=journalentry.id %}">Edit</a></td>
+                  <td><a class="btn btn-primary" href="{% url 'deleteEntry' journalentry_id=journalentry.id %}">Delete</a></td>
+                </tr>
+              {% endfor %} 
+              </tbody>
+            </table> 
+    </section>
+  <br>
 <!--Daily totals -->
 <section class='text-center container-sm'>
   <br>
@@ -330,35 +348,17 @@
   </section>
 
 
-   <!--Journal Entry display and Editing-->
-   <section class='text-center container-sm'>
-    <br>
-    <h1><b>JOURNAL ENTRIES</b></h1>
-        
-    <a class='btn btn-primary' href="{% url 'api' %}">Add Entry</a>
-  
-            <table class="table">
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col">Date</th>
-                  <th scope="col">Meal</th>
-                  <th scope="col">Food</th>
-                  <th scope="col">Servings</th>
-                </tr>
-              </thead> 
-              <tbody>
-              {% for journalentry in journalentry %}
-                <tr>
-                  <td>{{journalentry.date}}</td>
-                  <td>{{journalentry.meal}}</td>
-                  <td>{{journalentry.food_name}}</td>
-                  <td>{{journalentry.servings}}</td>
-                  <td><a class="btn btn-primary" href="{% url 'showSingleEntry' journalentry_id=journalentry.id %}">Edit</a></td>
-                  <td><a class="btn btn-primary" href="{% url 'deleteEntry' journalentry_id=journalentry.id %}">Delete</a></td>
-                </tr>
-              {% endfor %} 
-              </tbody>
-            </table> 
+    <!--Morbitity display and Adding-->
+    <section class='text-center container-sm'>
+      <br>
+      <h1><b>Your Morbitities:</b></h1>
+      <a class='btn btn-primary' href="{% url 'addMorbidEntry' %}">Add Morbidity</a>
+      <br><br>
+      {% for morbidity in morbidities %}
+                <p>{{morbidity.type_name}}</p>
+                {% empty  %}
+                  <p>No Morbitities!</p>
+            {% endfor %} 
     </section>
   <br>
   <br>
