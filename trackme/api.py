@@ -141,14 +141,14 @@ def assignMicros(food_item) :
   phos_value = 0
   k_value = 0
   for i in food_item :
-    if i.nutrient_name == 'Protein' :
-      protein_value = i.value
-    elif i.nutrient_name == 'Sodium, Na' :
-      sodium_value = i.value
-    elif i.nutrient_name == 'Potassium, K' :
-      k_value = i.value
-    elif i.nutrient_name == 'Phosphorus, P' :
-      phos_value = i.value
+    if i['nutrient_name'] == 'Protein' :
+      protein_value = i['value']
+    elif i['nutrient_name'] == 'Sodium, Na' :
+      sodium_value = i['value']
+    elif i['nutrient_name'] == 'Potassium, K' :
+      k_value = i['value']
+    elif i['nutrient_name'] == 'Phosphorus, P' :
+      phos_value = i['value']
 
   ordered_nutrients = [protein_value, sodium_value, k_value, phos_value]
   return (ordered_nutrients)
