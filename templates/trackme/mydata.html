@@ -204,12 +204,28 @@
         {% if alerts.sodium == 'Daily intake is in the recommended range!' %} 
           <p>You're sodium levels are looking great! Keep it up! </p>
         {% elif alerts.sodium == 'Daily intake is lower than recommended' %} 
-          <p><span style="color:#FF0000">LOW Sodium</span>. Looks like you’re eating not enough sodium, I would suggest eating 
-            more canned vegetables, salted nuts, or eggs.</p>
+          <p><span style="color:#FF0000">LOW Sodium</span>. Looks like you are eating not enough sodium, I would suggest eating more: 
+            <ul>
+              <li>Canned vegetables</li>
+              <li>Salted nuts</li>
+              <li>Eggs</li>
+              <li>Canned vegetables</li>
+              <li>Salted nuts</li>
+              <li>Breads and Rolls</li>
+            </ul>  
+          </p>
         {% else %}
-          <p><span style="color:#FF0000">HIGH Sodium</span>. Looks like you’re eating too much sodium, 
-            I would suggest eating less processed foods and buying more fresh foods. 
-            <p>Avoid Breads and rolls, Pizzas, Sandwiches, cured meats, Burritos and tacos.</p>
+          <p><span style="color:#FF0000">HIGH Sodium</span>. Looks like you are eating too much sodium, 
+            I would suggest eating less processed foods and buying more fresh foods. Try avoiding these foods:
+            <p>
+              <ul>
+                <li>Breads and rolls</li>
+                <li>Pizzas</li>
+                <li>Sandwiches</li>
+                <li>Cured meats</li>
+                <li>Burritos and tacos</li>
+              </ul>  
+            </p>
             </p>
         {% endif %} 
       </div>
@@ -220,9 +236,25 @@
       {% if alerts.protein == 'Daily intake is in the recommended range!' %} 
         <p>You're protein levels are great! Congrats! </p>
       {% elif alerts.protein == 'Daily intake is lower than recommended' %} 
-        <p> <span style="color:#FF0000">LOW Protein</span>. Looks like you are eating not enough protein, I would suggest eating more meat, eggs, or dairy.</p>
+        <p> <span style="color:#FF0000">LOW Protein</span>. Looks like you are eating not enough protein, I would suggest eating more: 
+          <ul>
+            <li>Meats</li>
+            <li>Eggs</li>
+            <li>Dairy</li>
+            <li>Poultry</li>
+            <li>Nuts</li>
+          </ul>  
+        </p>
       {% else %}
-        <p> <span style="color:#FF0000">HIGH Protein</span>. Looks like you are eating too much protein, I would suggest eating less meat, eggs, or dairy.</p>
+        <p> <span style="color:#FF0000">HIGH Protein</span>. Looks like you are eating too much protein, I would suggest cutting down on these foods:
+          <ul>
+            <li>Meats</li>
+            <li>Eggs</li>
+            <li>Dairy</li>
+            <li>Poultry</li>
+            <li>Nuts</li>
+          </ul>  
+        </p>
       {% endif %} 
       </div>
 
@@ -233,9 +265,23 @@
       {% if alerts.k == 'Daily intake is in the recommended range!' %} 
         <p>Your potassium levels are looking good!</p>
       {% elif alerts.k == 'Daily intake is lower than recommended' %} 
-        <p> <span style="color:#FF0000">LOW Potassium</span>. Looks like you are eating not enough potassium, I would suggest eating more bananas, potatoes, or tomatoes.</p>
+        <p> <span style="color:#FF0000">LOW Potassium</span>. Looks like you are eating not enough potassium, let's work on eating more:
+          <ul>
+            <li>Bananas</li>
+            <li>Potatoes</li>
+            <li>Tomatoes</li>
+            <li>Apricots</li>
+          </ul>  
+        </p>
       {% else %}
-        <p> <span style="color:#FF0000">HIGH Potassium</span>. Looks like you are eating too much potassium, I would suggest eating more fruits and pastas.</p>
+        <p> <span style="color:#FF0000">HIGH Potassium</span>. Looks like you are eating too much potassium, I would suggest avoiding foods like: 
+          <ul>
+            <li>Bananas</li>
+            <li>Potatoes</li>
+            <li>Tomatoes</li>
+            <li>Apricots</li>
+          </ul>  
+        </p>
       {% endif %} 
       </div>
 
@@ -245,9 +291,23 @@
       {% if alerts.phos == 'Daily intake is in the recommended range!' %} 
         <p>Your phosphorus levels are great. Keep it up!</p>
       {% elif alerts.phos == 'Daily intake is lower than recommended' %} 
-        <p> <span style="color:#FF0000">LOW Potassium</span>. Looks like you are eating not enough Phosphorus, I would suggest eating more meat, bran cereals, dairy foods.</p>
+        <p> <span style="color:#FF0000">LOW Phosphorus</span>. Looks like you are eating not enough Phosphorus, I would suggest eating: <ul>
+          <li>Meat</li>
+          <li>Bran cereals</li>
+          <li>Dairy foods</li>
+          <li>Legumes</li>
+          <li>Seafood</li>
+        </ul>  
+      </p>
       {% else %}
-        <p> <span style="color:#FF0000">HIGH Potassium</span>. Looks like you are eating too much Phosphorus, I would suggest eating more fresh foods, bread, or pasta.</p>
+        <p> <span style="color:#FF0000">HIGH Phosphorus</span>. Looks like you are eating too much Phosphorus, I would suggest avoiding: <ul>
+          <li>Meat</li>
+          <li>Bran cereals</li>
+          <li>Dairy foods</li>
+          <li>Legumes</li>
+          <li>Seafood</li>
+        </ul>  
+      </p>
       {% endif %} 
       </div>
 
