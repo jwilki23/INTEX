@@ -156,6 +156,10 @@ def updateJournalEntryPageView (request) :
         journalentry.meal = request.POST['meal']
         journalentry.food_name = request.POST['food_name']
         journalentry.servings = request.POST['servings']
+        journalentry.DV_protein = request.POST['protein']
+        journalentry.DV_sodium = request.POST['sodium']
+        journalentry.DV_k = request.POST['k']
+        journalentry.DV_phos = request.POST['phos']
         # journalentry.person = request.POST['person']
 
         journalentry.save()
@@ -176,6 +180,10 @@ def addJournalEntryPageView (request) :
         journalentry.meal = request.POST['meal']
         journalentry.food_name = request.POST['food_name'].title()
         journalentry.servings = request.POST['servings']
+        journalentry.DV_protein = request.POST['protein']
+        journalentry.DV_sodium = request.POST['sodium']
+        journalentry.DV_k = request.POST['k']
+        journalentry.DV_phos = request.POST['phos']
         journalentry.person = Person.objects.get(user_name = current_user_name)
 
         journalentry.save()
