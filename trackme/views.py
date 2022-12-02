@@ -11,7 +11,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
 from trackme.models import JournalEntry
-from .api import searchItemName2, getNutrients, searchItem
+from .api import searchItemName2, getNutrients, searchItem, idSearch
+import json
 
 from django.shortcuts import redirect
 # Create your views here.
@@ -203,34 +204,32 @@ def addNewMorbidityPageView(request) :
     return myDataPageView(request)
 
 def apiPageView(request) : 
-    # search_item = request.GET.get('food')
-    # data = searchItemName2(search_item)
-    # nutrition = request.POST.get('food_item')
-    # context2 = {
-    #      "data" : data,
-    #      "nutrition" : nutrition
-    # }
-    # return render(request, 'trackme/api.html', context2)
     if request.method == 'POST':
-        # search_item = request.POST.get('food')
-        # data = searchItemName2(search_item)
-        nutrition = request.POST['food_item']
-        context2 = {
-            "nutrition" : nutrition
-        }
-        return displayPageView(request, context2)
+        searchItem = request.POST['searchItem']
+        value = True
+        while value == True:
+            try:
+                int(searchItem)
+                food_item = idSearch(searchItem)
+                context2 = {
+                    "food_item" : food_item,
+                }
+                value = False
+                return displayPageView(request, context2)  
+            except:
+                data = searchItemName2(searchItem)
+                context = {
+                "data" : data
+                    }  
+        
+                return render(request, 'trackme/api.html', context)
+    else:
+        return render(request, 'trackme/api.html')
 
-    else: 
-        search_item = request.GET.get('food')
-        data = searchItemName2(search_item)
-
-        context = {
-            "data" : data
-        }
-    
-        return render(request, 'trackme/api.html', context)
 
 def displayPageView(request, context2) :
+
+
 
     return render (request, 'trackme/display.html', context2)
 

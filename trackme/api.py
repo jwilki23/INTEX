@@ -103,8 +103,33 @@ def searchItemName2(searchItem):
     }
     dictionary2_list.append(dictionary2)
         
-      
-      
-
-
   return dictionary2_list
+
+import requests
+import json
+
+def idSearch(searchID):
+  url = "https://api.nal.usda.gov/fdc/v1/foods/search?query=" + str(searchID) + "&pageSize=10&api_key=sCGPWgSfRBPOVcf7w5KfIOuckccjw3R85ebjzBKs"
+
+  response = requests.request("GET", url)
+  json_data = json.loads(response.text)
+  food_nutrients = json_data['foods'][0]['foodNutrients']
+
+  nutrient_ids = [1092,1091,1093,1003]
+  nutrient_list = []
+  
+
+  for nutrients in food_nutrients: 
+      nutrient = nutrients['nutrientId'] 
+      if nutrient in nutrient_ids:
+        dictionary = {
+              "nutrient_id" : nutrient,
+              "nutrient_name" : nutrients['nutrientName'],
+              "value" : nutrients['value'],
+              "unit" : nutrients['unitName']
+              }
+        nutrient_list.append(dictionary)
+      else:
+        pass
+        
+  return nutrient_list

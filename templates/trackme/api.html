@@ -3,24 +3,26 @@
 {% block content %}
 
 <br><br><br><br><br><br>
-<form method="GET" action="{% url 'api' %}">
-  {% csrf_token %}
-  <input type="text" name="food" id="food">
-  <button type="submit">Search</button>
-</form>
 <form method="POST" action="{% url 'api' %}">
   {% csrf_token %}
-  <select name="food_item" id="food_item">
+  <input type="text" name="searchItem" id="searchItem">
+  <button type="submit">Search</button>
+</form>
+
+
+
+<form method="POST" action="{% url 'api' %}">
+  {% csrf_token %}
+  {% comment %} <select name='data' id='data' value='{{data}}'> </select> {% endcomment %}
+  <select name="searchItem" id="searchItem">
     {% for item in data %}
-    <option value="{{ item.nutrients }}">{{ item.food_name }}</option>
+    <option value="{{ item.food_id }}">{{ item.food_name }}</option>
     {% endfor %}
   </select>
   <button type="submit">Select</button>
 </form>
-<div>
-  {% for nutrient in nutrition %}
-  <p value="{{ nutrient.nutrient_name }}">{{ nutrient.nutrient_name }} </p>
-  {% endfor %}
-</div>
+{% for item in data.0.nutrients %}
+<p>{{item}}  </p>
+{% endfor %}
 
 {% endblock %}
