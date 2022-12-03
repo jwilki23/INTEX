@@ -164,11 +164,11 @@
         <script>
         const ctx1 = document.getElementById('myChart1').getContext('2d');
         const myChart1 = new Chart(ctx1, {
-            type: 'pie',
+            type: 'bar',
             data: {
                 labels: ['Sodium', 'Potassium (K)', 'Phosphorus (Phos)'],
                 datasets: [{
-                    label: 'Percent of DV',
+                    label: 'Micronutrient DV',
                     data: [{{micros.sodium}}, {{micros.k}} , {{micros.phos}} ],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.3)',
